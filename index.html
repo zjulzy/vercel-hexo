@@ -353,13 +353,13 @@
 
       
           <h2 id="流水线-cpu-的简易实现"><a href="#流水线-cpu-的简易实现" class="headerlink" title="流水线 cpu 的简易实现"></a>流水线 cpu 的简易实现</h2><p><a target="_blank" rel="noopener" href="https://github.com/xjlizeyu/pipelined-CPU">github项目地址</a></p>
-<h3 id="一、整体思路"><a href="#一、整体思路" class="headerlink" title="一、整体思路"></a>一、整体思路</h3><h4 id="1-流水线-cpu"><a href="#1-流水线-cpu" class="headerlink" title="1. 流水线 cpu"></a>1. 流水线 cpu</h4><img src="http://blogpics.lenmian.cn/static/images/2019-12-27-15-20-01.png">
+<h3 id="一、整体思路"><a href="#一、整体思路" class="headerlink" title="一、整体思路"></a>一、整体思路</h3><h4 id="1-流水线-cpu"><a href="#1-流水线-cpu" class="headerlink" title="1. 流水线 cpu"></a>1. 流水线 cpu</h4><img src="http://blogpics.lenmain.cn/static/images/2019-12-27-15-20-01.png">
 
 <p>流水线 cpu 中一个指令执行的五个周期如上图所示。<br>为了解决流水线同步问题，设计 cpu 中级间寄存器由上升沿触发，周期内器件由下降沿触发。</p>
-<img src="http://blogpics.lenmian.cn/static/images/2019-12-25-15-10-11.png">
+<img src="http://blogpics.lenmain.cn/static/images/2019-12-25-15-10-11.png">
 
 <p>上图为书上的流水线 cpu 基本数据通路，本次实验主要在此基础上进行改进，且添加冲突处理模块，在实验过程中，我也发现了该图中很多不足的地方。</p>
-<h4 id="2-mips-指令集"><a href="#2-mips-指令集" class="headerlink" title="2.mips 指令集"></a>2.mips 指令集</h4><img src="http://blogpics.lenmian.cn/static/images/2019-12-28-13-52-25.png">
+<h4 id="2-mips-指令集"><a href="#2-mips-指令集" class="headerlink" title="2.mips 指令集"></a>2.mips 指令集</h4><img src="http://blogpics.lenmain.cn/static/images/2019-12-28-13-52-25.png">
 <p>mips 指令分为 R 型，I 型和 J 型，其中 R 型有三个操作数，I 型携带立即数，J 型为跳转指令。<br><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_41848006/article/details/82256626">MIPS 指令</a></p>
 <h4 id="3-冲突管理"><a href="#3-冲突管理" class="headerlink" title="3. 冲突管理"></a>3. 冲突管理</h4><p>冲突管理是流水线 cpu 不得不面对的一个问题，解决方法主要为插入气泡来阻塞指令运行，已经增加新的数据回路使前指令的结果尽快回送到寄存器中。本次实验主要采取的是气泡插入法，结构较为简单但是降低了效率。</p>
 <p>cpu 的冲突主要分为三种，结构冲突，数据冲突和控制冲突。结构冲突通过流水线 cpu 的结构设计可以避免，数据冲突主要是相距较近的指令所需数据地址相同产生的时间冲突，控制冲突主要针对跳转指令，本次实验中的冲突检测模块维护了一个队列用来检测冲突，从而解决数据冲突，对于控制冲突，由于数据通路问题无法较早回送，只能插入气泡。</p>
@@ -429,18 +429,18 @@
 </blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">00 43 08 20</span><br><span class="line">08 00 00 04</span><br><span class="line">00 64 10 22</span><br><span class="line">00 43 08 24</span><br><span class="line">00 43 08 2a</span><br><span class="line">8c 41 00 0a</span><br><span class="line">10 22 00 02</span><br><span class="line">ac 41 00 0a</span><br><span class="line">00 43 08 20</span><br><span class="line">fc 00 00 00</span><br></pre></td></tr></table></figure>
 
-<h4 id="2-vivado-模拟"><a href="#2-vivado-模拟" class="headerlink" title="2.vivado 模拟"></a>2.vivado 模拟</h4><img src="http://blogpics.lenmian.cn/static/images/2019-12-28-20-53-58.png">
+<h4 id="2-vivado-模拟"><a href="#2-vivado-模拟" class="headerlink" title="2.vivado 模拟"></a>2.vivado 模拟</h4><img src="http://blogpics.lenmain.cn/static/images/2019-12-28-20-53-58.png">
 
 <h4 id="3-测试模块"><a href="#3-测试模块" class="headerlink" title="3. 测试模块"></a>3. 测试模块</h4><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">module</span> test();</span><br><span class="line">    cpu cpu1();</span><br><span class="line">    <span class="keyword">initial</span> <span class="keyword">begin</span></span><br><span class="line">        <span class="built_in">$dumpfile</span>(<span class="string">&quot;cpu.vcd&quot;</span>);</span><br><span class="line">        <span class="built_in">$dumpvars</span>(<span class="number">0</span>,cpu1);</span><br><span class="line">        #<span class="number">1000</span>;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"><span class="keyword">endmodule</span> <span class="comment">// test</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-<h4 id="4-波形效果"><a href="#4-波形效果" class="headerlink" title="4. 波形效果"></a>4. 波形效果</h4><img src="http://blogpics.lenmian.cn/static/images/2019-12-28-20-56-25.png">
-<img src="http://blogpics.lenmian.cn/static/images/2019-12-28-20-55-51.png">
-<img src="http://blogpics.lenmian.cn/static/images/2019-12-28-20-56-40.png">
-<img src="http://blogpics.lenmian.cn/static/images/2019-12-28-20-56-58.png">
-<img src="http://blogpics.lenmian.cn/static/images/2019-12-28-20-57-16.png">
-<img src="http://blogpics.lenmian.cn/static/images/2019-12-28-20-57-28.png">
-<img src="http://blogpics.lenmian.cn/static/images/2019-12-28-20-57-45.png">
-<img src="http://blogpics.lenmian.cn/static/images/2019-12-28-20-58-04.png">
+<h4 id="4-波形效果"><a href="#4-波形效果" class="headerlink" title="4. 波形效果"></a>4. 波形效果</h4><img src="http://blogpics.lenmain.cn/static/images/2019-12-28-20-56-25.png">
+<img src="http://blogpics.lenmain.cn/static/images/2019-12-28-20-55-51.png">
+<img src="http://blogpics.lenmain.cn/static/images/2019-12-28-20-56-40.png">
+<img src="http://blogpics.lenmain.cn/static/images/2019-12-28-20-56-58.png">
+<img src="http://blogpics.lenmain.cn/static/images/2019-12-28-20-57-16.png">
+<img src="http://blogpics.lenmain.cn/static/images/2019-12-28-20-57-28.png">
+<img src="http://blogpics.lenmain.cn/static/images/2019-12-28-20-57-45.png">
+<img src="http://blogpics.lenmain.cn/static/images/2019-12-28-20-58-04.png">
 
 <h3 id="五、改进方案"><a href="#五、改进方案" class="headerlink" title="五、改进方案"></a>五、改进方案</h3><p>本次实验中为了解决数据冲突和控制冲突，主要采用了插入气泡的后退法，但是尽管后退法的结构简单，不会引入较为复杂的连线和结构，但浪费了较多的 cpu 周期，削弱了<br>流水线 cpu 相较于其他 cpu 效率更高的优点。为了保证指令执行的效率，可以使用专用的数据通路提前回送数据从而取代气泡的插入。同时，对于控制冒险，可以将 J 指令在 FI<br>周期内完成，BEQ 指令在 FI 和 ID 周期内完成，可以实现 J 指令不插入气泡，BEQ 指令只插入一个气泡，但要实现这一结构，本次实验会对级间寄存器结构有较大的改动，因此没有实现。</p>
 
