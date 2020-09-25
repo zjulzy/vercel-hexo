@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"vercel-hexo-ten.vercel.app","root":"/","scheme":"Muse","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="1. 计算机网络体系结构">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笔记模板">
+<meta property="og:url" content="https://vercel-hexo-ten.vercel.app/2020/09/25/xiexiren/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="1. 计算机网络体系结构">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://blogpics.lenmain.cn/static/images/2020-05-23-11-04-44.png">
+<meta property="og:image" content="http://blogpics.lenmain.cn/static/images/2020-06-15-10-40-09.png">
+<meta property="og:image" content="http://blogpics.lenmain.cn/static/images/2020-06-18-14-35-32.png">
+<meta property="og:image" content="http://blogpics.lenmain.cn/static/images/2020-06-18-14-40-38.png">
+<meta property="og:image" content="http://blogpics.lenmain.cn/static/images/2020-06-18-15-21-59.png">
+<meta property="og:image" content="http://blogpics.lenmain.cn/static/images/2020-06-18-15-24-44.png">
+<meta property="og:image" content="http://blogpics.lenmain.cn/static/images/2020-06-20-10-07-33.png">
+<meta property="og:image" content="http://blogpics.lenmain.cn/static/images/2020-06-20-10-22-16.png">
+<meta property="og:image" content="http://blogpics.lenmain.cn/static/images/2020-06-21-09-21-02.png">
+<meta property="og:image" content="http://blogpics.lenmain.cn/static/images/2020-06-21-09-27-35.png">
+<meta property="og:image" content="http://blogpics.lenmain.cn/static/images/2020-06-22-08-04-09.png">
+<meta property="og:image" content="http://blogpics.lenmain.cn/static/images/2020-06-22-08-59-51.png">
+<meta property="og:image" content="http://blogpics.lenmain.cn/static/images/2020-06-23-10-32-05.png">
+<meta property="og:image" content="http://blogpics.lenmain.cn/static/images/2020-06-23-10-36-21.png">
+<meta property="og:image" content="http://blogpics.lenmain.cn/static/images/2020-06-25-09-33-04.png">
+<meta property="og:image" content="http://blogpics.lenmain.cn/static/images/2020-06-26-14-32-01.png">
+<meta property="og:image" content="http://blogpics.lenmain.cn/static/images/2020-06-26-15-08-59.png">
+<meta property="og:image" content="http://blogpics.lenmain.cn/static/images/2020-06-26-15-10-32.png">
+<meta property="og:image" content="http://blogpics.lenmain.cn/static/images/2020-06-26-15-30-37.png">
+<meta property="og:image" content="http://blogpics.lenmain.cn/static/images/2020-06-26-15-47-13.png">
+<meta property="og:image" content="http://blogpics.lenmain.cn/static/images/2020-06-26-15-49-46.png">
+<meta property="og:image" content="http://blogpics.lenmain.cn/static/images/2020-06-26-15-51-08.png">
+<meta property="article:published_time" content="2020-09-25T02:17:21.000Z">
+<meta property="article:modified_time" content="2020-09-25T02:17:33.587Z">
+<meta property="article:author" content="lenmain">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://blogpics.lenmain.cn/static/images/2020-05-23-11-04-44.png">
+
+<link rel="canonical" href="https://vercel-hexo-ten.vercel.app/2020/09/25/xiexiren/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>笔记模板 | Hexo</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Hexo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+  </div>
+
+  <div class="site-nav-right"></div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>Archives</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-cn">
+    <link itemprop="mainEntityOfPage" href="https://vercel-hexo-ten.vercel.app/2020/09/25/xiexiren/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="lenmain">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          笔记模板
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-09-25 10:17:21 / Modified: 10:17:33" itemprop="dateCreated datePublished" datetime="2020-09-25T10:17:21+08:00">2020-09-25</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="1-计算机网络体系结构"><a href="#1-计算机网络体系结构" class="headerlink" title="1. 计算机网络体系结构"></a>1. 计算机网络体系结构</h1><a id="more"></a>
+
+<h2 id="1-1-计算机网络的概念-组成和功能"><a href="#1-1-计算机网络的概念-组成和功能" class="headerlink" title="1.1. 计算机网络的概念, 组成和功能"></a>1.1. 计算机网络的概念, 组成和功能</h2><blockquote>
+<p>计算机网络由若干节点和连结这些节点的链路组成<br>这些节点可以是计算机, 集线器, 交换机或路由器</p>
+</blockquote>
+<h2 id="1-2-计算机网络的分类"><a href="#1-2-计算机网络的分类" class="headerlink" title="1.2. 计算机网络的分类"></a>1.2. 计算机网络的分类</h2><blockquote>
+<p>广域网, 城域网, 局域网, (个人局域网)<br>广域网范围大约为几十到几千公里, 城域网作用距离5~50千米, 局域网的作用距离在1km左右<br>按照使用者可以分为公用网和专用网</p>
+</blockquote>
+<h2 id="1-3-计算机网络的性能"><a href="#1-3-计算机网络的性能" class="headerlink" title="1.3. 计算机网络的性能"></a>1.3. 计算机网络的性能</h2><blockquote>
+<p>速率(比特率): 数据的传送速率, 单位为(b/s, kb/s)<br>带宽: 某通道传送数据的能力, 单位为(bit/s)<br>吞吐量: 单位时间内通过某个网络(信道, 接口)的实际的数据量.<br>时延: 发送时延, 传播时延, 处理时延, 排队时延<br>时延带宽积: 以比特为单位的链路长度<br>往返时间RTT<br>利用率U: D为当前网络时延，D0为空闲网络时延!<img src="http://blogpics.lenmain.cn/static/images/2020-05-23-11-04-44.png">  </p>
+</blockquote>
+<h2 id="1-4-计算机网络标准化以及相关组织"><a href="#1-4-计算机网络标准化以及相关组织" class="headerlink" title="1.4. 计算机网络标准化以及相关组织"></a>1.4. 计算机网络标准化以及相关组织</h2><blockquote>
+<p>国际标准化组织ISO</p>
+</blockquote>
+<h2 id="1-5-计算机网络结构分层概念"><a href="#1-5-计算机网络结构分层概念" class="headerlink" title="1.5. 计算机网络结构分层概念"></a>1.5. 计算机网络结构分层概念</h2><ul>
+<li>协议和划分层次  </li>
+</ul>
+<blockquote>
+<p>协议: 语法, 语义, 同步<br>分层的作用:</p>
+<ol>
+<li>各层之间独立</li>
+<li>灵活性好</li>
+<li>结构上可以分割  </li>
+<li>易于实现和维护</li>
+<li>能促进标准化工作<br>分层要完成的工作: 差错控制, 流量控制, 分段和重装, 复用和分用, 连接建立和释放<br>OSI参考模型将对等层系之间传输的数据单元称为该层的协议数据单元PDU<br>层与层之间交换的数据单位为服务数据单元SDU<br>相邻两层的实体进行交互点: 服务访问点SAP<br>对等层, 协议栈<br>实体可以用来表示任何可以发送或者接收信息的硬件或软件进程<br>协议是控制两个对等实体进行通信的规则的集合<br>在协议的控制下, 两个对等实体间的通信使得本层能够向上一层提供服务, 并使用下一层提供的服务  </li>
+</ol>
+</blockquote>
+<h2 id="1-6-OSI七层机构和TCP-IP四层结构"><a href="#1-6-OSI七层机构和TCP-IP四层结构" class="headerlink" title="1.6. OSI七层机构和TCP/IP四层结构"></a>1.6. OSI七层机构和TCP/IP四层结构</h2><p>!<img src="http://blogpics.lenmain.cn/static/images/2020-06-15-10-40-09.png"></p>
+<blockquote>
+<p>OSI提出七层协议体系模型, 但由于没有商业驱动力, 实现起来过于复杂, 没有得到广泛应用<br>TCP/IP为四层结构, 但是网络接口层没有实质内容<br>将网络接口的控制加TCP/IP模型组合形成五层协议结构  </p>
+<ol>
+<li>应用层<br>通过应用间的交互来完成特定网络应用, 定义了进程间通信和交互的原则<br>应用层交互的数据单元为<strong>报文</strong>  </li>
+<li>运输层(传输层)<br>运输层的任务是负责向两台主机之间的通信提供通用的数据传输服务<br>主要包括两种协议: TCO和UDP<br>传输控制协议TCP提供面向连接的, 可靠的数据传播, 数据单位为报文段<br>用户数据报协议UDP提供无连接的不保证可靠性的传输服务, 数据单位为用户数据报  </li>
+<li>网络层(网际层)<br>网络层主要负责为分组交换网中的不同主机提供通信服务<br>网络层将传输层产生的报文段分装成包或者分组<br>网络层使用无连接的网际ip协议和路由选择协议  </li>
+<li>数据链路层<br>链路层将IP分组组装成帧, 每一帧包含数据和必要的控制信息<br>实现差错控制, 可以通过复杂协议实现纠错    </li>
+<li>物理层<br>物理层上传输的数据单位为比特  </li>
+</ol>
+</blockquote>
+<hr>
+<h1 id="2-物理层"><a href="#2-物理层" class="headerlink" title="2. 物理层"></a>2. 物理层</h1><h2 id="2-1-物理层基本概念"><a href="#2-1-物理层基本概念" class="headerlink" title="2.1 物理层基本概念"></a>2.1 物理层基本概念</h2><blockquote>
+<p>机械特性, 电气特性, 功能特性, 过程特性<br>计算机内部并行通信, 在通信线路串行传输  </p>
+</blockquote>
+<h2 id="2-2-数据通信模型"><a href="#2-2-数据通信模型" class="headerlink" title="2.2 数据通信模型"></a>2.2 数据通信模型</h2><blockquote>
+<p>一个数据通信模可以划分为三个部分: 源系统, 传输系统和目的系统<br>信号分为数字信号和模拟信号  </p>
+</blockquote>
+<h2 id="2-3-信道"><a href="#2-3-信道" class="headerlink" title="2.3 信道"></a>2.3 信道</h2><blockquote>
+<p>三种信息交互方式: 单向通信, 双向交替通信(半双工), 双向同时通信(全双工)<br>来自信源的信号称为基带信号, 含有低频和直流成分<br><strong>调制</strong>可以去除低频分量和直流分量方便信道传输<br>基带调制(编码): 使基带信号和信道特性相适应, 变换后仍为数字信号<br>带通调制: 使用载波进行调制, 把基带信号的频率范围搬移到较高频段, 并转换为模拟信号(带通信号)  </p>
+</blockquote>
+<ol>
+<li>常见编码方式</li>
+</ol>
+<blockquote>
+<ul>
+<li>不归零制: 正电平为1, 负电平为0</li>
+<li>归零制: 正脉冲为1, 负脉冲为0  </li>
+<li>曼彻斯特编码: 位周期中心向上跳代表1, 位中心向下跳代表0  </li>
+<li>差分曼彻斯特编码: 在每一位的中心始终有跳变, 位开始边界有跳变表示0, 位开始边界没有跳变表示1  </li>
+</ul>
+</blockquote>
+<p>!<img src="http://blogpics.lenmain.cn/static/images/2020-06-18-14-35-32.png"></p>
+<ol start="2">
+<li>基本带通调制方法</li>
+</ol>
+<blockquote>
+<p>调幅(AM): 载波的振幅随基带数字信号而变化.<br>调频(FM): 载波的频流随基带数字信号而变化.<br>调相(PM): 载波的的初始相位随基带数字信号而变化.  </p>
+</blockquote>
+<p>!<img src="http://blogpics.lenmain.cn/static/images/2020-06-18-14-40-38.png"></p>
+<ol start="3">
+<li>信道的极限容量  </li>
+</ol>
+<blockquote>
+<p>限制码元在信道上的传输效率的因素有信道的频率范围和信噪比<br>奈氏准则: 在任何信道中码元传输的速率有限, 超过此上限会出现码间串扰问题<br>信噪比: $S/N$, 单位分贝</p>
+</blockquote>
+<p>$$S/N = 10log_{10}(S/N)$$</p>
+<blockquote>
+<p>香农公式: C为信道的极限信息传输速率, W为信道的带宽($Hz$)<br>除了信道频率宽度和信噪比, 可以通过编码使一个码元包含更多比特信息   </p>
+</blockquote>
+<p>$$C=Wlog_2(1+S/N)$$</p>
+<h2 id="2-4-物理层传输媒体"><a href="#2-4-物理层传输媒体" class="headerlink" title="2.4 物理层传输媒体"></a>2.4 物理层传输媒体</h2><blockquote>
+<p>导引型传输媒体和非导引型传输媒体  </p>
+</blockquote>
+<ul>
+<li>导引型传输媒体</li>
+</ul>
+<blockquote>
+<p>双绞线: 互相绞合的两根相互绝缘导线<br>同轴电缆: 内导体, 绝缘层, 屏蔽层<br>光缆</p>
+</blockquote>
+<ul>
+<li>非导引型传输媒体 </li>
+</ul>
+<blockquote>
+<p>无线通信不受信道频率宽度影响, 有较大的可用频段<br>无线通信, 中继站, 卫星通信时延  </p>
+</blockquote>
+<h2 id="2-5-信道复用技术"><a href="#2-5-信道复用技术" class="headerlink" title="2.5 信道复用技术"></a>2.5 信道复用技术</h2><blockquote>
+<p>频分复用(FDM), 时分复用(TDM), 统计时分复用, 波分复用(WDM), 码分复用(CDM)<br>频分复用的用户在同样的时间占用不同的频率带宽资源, 用户增加, 带宽变宽<br>时分复用将时间划分成等长的时分复用帧, 用户增加, 分配的时间间隙减少  </p>
+</blockquote>
+<p>!<img src="http://blogpics.lenmain.cn/static/images/2020-06-18-15-21-59.png"></p>
+<blockquote>
+<p>统计时分复用, 动态分配时间间隙, 能极大地提高信道利用率(异步时分复用)  </p>
+</blockquote>
+<p>!<img src="http://blogpics.lenmain.cn/static/images/2020-06-18-15-24-44.png"></p>
+<blockquote>
+<p>波分复用是光的频分复用<br>码分复用各用户在同一时间使用同样的频带进行通信, 各用户使用的码型不同, 因此不会互相干扰  </p>
+</blockquote>
+<h2 id="2-6-宽带接入技术"><a href="#2-6-宽带接入技术" class="headerlink" title="2.6 宽带接入技术"></a>2.6 宽带接入技术</h2><blockquote>
+<p>ADSL技术, 光纤同轴混合网, FTTx技术  </p>
+</blockquote>
+<hr>
+<h1 id="3-数据链路层"><a href="#3-数据链路层" class="headerlink" title="3. 数据链路层"></a>3. 数据链路层</h1><p><strong>数据链路层上的信道主要有点对点信道和广播信道</strong></p>
+<blockquote>
+<p>局域网虽然是网络, 但不涉及通过路由器的网络间转发, 属于数据链路层<br>数据链路层的三个基本问题: 封装成帧, 透明传输和差错控制  </p>
+</blockquote>
+<h2 id="3-1-使用点对点信道"><a href="#3-1-使用点对点信道" class="headerlink" title="3.1 使用点对点信道"></a>3.1 使用点对点信道</h2><ul>
+<li>数据链路和帧  </li>
+</ul>
+<blockquote>
+<p>数据链路: 物理线路以及必要的通信控制协议(网络适配器)<br>点对点信道的数据链路层协议数据单元是帧, 封装来自网络层的IP数据报  </p>
+</blockquote>
+<ul>
+<li>三个基本问题</li>
+</ul>
+<ol>
+<li>封装成帧  </li>
+</ol>
+<blockquote>
+<p>帧头部和帧尾部用于确定帧的界限. 帧的数据部分长度不超过MTU<br>帧开始符SOH表示帧的开始, 帧结束符EOT表示帧的结束<br>丢失结束符的帧必须丢弃  </p>
+</blockquote>
+<ol start="2">
+<li>透明传输</li>
+</ol>
+<blockquote>
+<p>透明传输指帧定界不受帧数据部分中可能出现的帧控制符影响<br>通过字符填充解决: 在数据中的SOH或EOT前加入转义字符ESC, 向网络层提交时删除  </p>
+</blockquote>
+<ol start="3">
+<li>差错控制</li>
+</ol>
+<ul>
+<li>比特差错, 误码率  </li>
+</ul>
+<blockquote>
+<p>误码率和信噪比有关, 想要提高信噪比, 必须降低误码率<br>循环冗余检验(CRC): 将数据分组并计算每组的冗余码, 组合发送<br>冗余码计算: 模二运算进行$2^n$乘M运算, 除以n+1位事先决定的除数P<br>得到的商R作为冗余码拼接在M后面发出去(帧检验序列)<br>接收端检验: 以帧为单位进行CRC检验, 把每一个帧除以除数P, 检验余数是否为0<br>若余数不为0, 丢弃帧, 无法确认出错位置  </p>
+</blockquote>
+<ul>
+<li>传输差错: 帧丢失, 帧重复, 帧失序      </li>
+</ul>
+<blockquote>
+<p>在CRC基础上增加帧编号, 确认和重传机制可以解决传输差错冰箱网络层提供可靠传输服务<br>对于通信质量好的有线链路, 不要求提供可靠服务, 改正传输差错由网络层进行<br>通信质量较差的无线链路使用确认和重传机制, 总体提升通信效率    </p>
+</blockquote>
+<h2 id="3-2-点对点协议"><a href="#3-2-点对点协议" class="headerlink" title="3.2 点对点协议"></a>3.2 点对点协议</h2><blockquote>
+<p>提供可靠传输服务的高级数据链路控制(HDLC)已经较少使用, 点对点协议PPP使用较为广泛<br>PPP协议是用户通过接入网与ISP进行通信时使用的数据链路层协议<br>PPP需要满足的需求: 简单, 封装成帧, 透明性, 多种网络层协议, 多种类型链路, 差错检测, 检测连接状态, 最大传输单元, 网络层地址协商, 数据压缩协商  </p>
+</blockquote>
+<ul>
+<li>PPP协议的组成</li>
+</ul>
+<blockquote>
+<p>一个将IP数据报封装到串行链路的方法<br>一个用来建立, 配置和测试数据链路连接的链路控制协议LCP<br>一套网络控制协议NCP  </p>
+</blockquote>
+<ul>
+<li>PPP协议的帧格式 </li>
+</ul>
+<p>!<img src="http://blogpics.lenmain.cn/static/images/2020-06-20-10-07-33.png"></p>
+<blockquote>
+<p>首部和尾部包含相同的标志字段用来定界<br>首部的A和C并未给出定义<br>如果数据字段中出现标志字段时, 使用字节填充<br>PPP协议使用SONET/NET链路时, 使用零比特填充防止标志字段出现  </p>
+</blockquote>
+<ul>
+<li>PPP协议的工作状态</li>
+</ul>
+<p>!<img src="http://blogpics.lenmain.cn/static/images/2020-06-20-10-22-16.png"></p>
+<blockquote>
+<p>三种工作状态: 链路静止, 链路打开, 链路终止    </p>
+</blockquote>
+<h2 id="3-3-使用广播信道"><a href="#3-3-使用广播信道" class="headerlink" title="3.3 使用广播信道"></a>3.3 使用广播信道</h2><blockquote>
+<p>局域网基于广播信道, 主要特点: 网络为一个单位所拥有, 且地理范围和站点数目均有限<br>局域网优点: 具有广播功能, 便于系统的扩展和演变, 提高了软件的可靠性, 可用性和生存性<br>局域网拓扑结构: 星型网, 环型网, 总线网  </p>
+</blockquote>
+<ul>
+<li>CSMA/CD协议</li>
+</ul>
+<blockquote>
+<p>为了通信简便, 以太网采用较为灵活的无连接工作方式, 并使用曼切斯特编码<br>无连接工作方式基于良好的通信线路, 是否重传差错帧由上层决定  .<br>CSMA/CD协议特点: 多点接入, 载波监听, 碰撞检测<br>多点接入: 总线型网络计算机以多点接入的方式连接在一根总线上<br>载波监听: 检测总线上是否有其他计算机在发送<br>碰撞检测: 判断自己在发送时是否有其他站也在发送<br>使用CSMA/CD时, 一个站不可能同时进行接受和发送, 因此是半双工通信<br>每一个站在发送数据的一小段时间内存在着遭遇碰撞的可能性, 这段时间是不确定的, 成为发送的不确定性<br>最多经过2倍总线端到端的传播时延可以知道这次发送有没有碰撞, 称为争用期<br>利用截断二进制指数退避确定重传的时机<br>从离散整数集合[$2^0-1, 2^1-1…2^k-1$]取一个数, 记为r, k=min(重传次数, 10)<br>重传时间为r倍的争用期, 超过16次不再重传<br>为了保证发送端确定是否发生碰撞，规定最小帧长64字节，小于64字节直接丢弃<br>强化碰撞, 帧间最小间隔<br>CSMA要点：先检测信道，边发送边监听  </p>
+</blockquote>
+<ul>
+<li>集线器  </li>
+</ul>
+<blockquote>
+<p>集线器用于星型拓扑结构，常与双绞线搭配使用<br>集线器的局域网再物理上是星型网，在逻辑上是一个总线网<br>集线器有很多接口，类似多接口转发器<br>集线器工作在物理层，简单地转发比特，不进行碰撞检测  </p>
+</blockquote>
+<ul>
+<li>以太网的信道利用率  </li>
+</ul>
+<blockquote>
+<p>定义参数a, 代表碰撞检测的速度, a的值越小, 碰撞检测越灵敏<br>帧的发送时间为$T_0$  </p>
+</blockquote>
+<p>!<img src="http://blogpics.lenmain.cn/static/images/2020-06-21-09-21-02.png"></p>
+<blockquote>
+<p>极限信道利用率$S_max=1/(1+a)$  </p>
+</blockquote>
+<ul>
+<li>MAC层</li>
+</ul>
+<blockquote>
+<p>在局域网中, 硬件地址又称为物理地址或者MAC地址, 长度为6字节<br>适配器通过MAC帧中的目的地址进行过滤  </p>
+</blockquote>
+<p>!<img src="http://blogpics.lenmain.cn/static/images/2020-06-21-09-27-35.png"></p>
+<h2 id="3-4-扩展以太网"><a href="#3-4-扩展以太网" class="headerlink" title="3.4 扩展以太网"></a>3.4 扩展以太网</h2><ol>
+<li>在物理层扩展以太网</li>
+</ol>
+<blockquote>
+<p>使用光纤和一对光纤调制解调器, 扩大冲突域    </p>
+</blockquote>
+<ol start="2">
+<li>在数据链路层扩展以太网</li>
+</ol>
+<blockquote>
+<p>使用网桥和交换机, 工作在数据链路层<br>交换机具有并行性, 使多对主机同时通信, 相互独占媒体, 无碰撞<br>交换机每一个接口与一个主机或交换器相连, 全双工通信  </p>
+</blockquote>
+<hr>
+<h1 id="4-网络层"><a href="#4-网络层" class="headerlink" title="4. 网络层"></a>4. 网络层</h1><h2 id="4-1-网络层提供的两种服务"><a href="#4-1-网络层提供的两种服务" class="headerlink" title="4.1 网络层提供的两种服务"></a>4.1 网络层提供的两种服务</h2><ol>
+<li>虚电路服务</li>
+</ol>
+<blockquote>
+<p>在通信前先建立一条虚电路, 以预留双方通信所需的一切网络资源<br>分组的首部不需要目的地址, 只需要写虚电路的编号<br>面向连接的可靠性服务, 为电信网应用  </p>
+</blockquote>
+<ol start="2">
+<li>数据报服务</li>
+</ol>
+<blockquote>
+<p>互联网TCP/IP协议中使用的无连接的, 尽最大努力交付的数据报服务<br>每一个IP分组独立发送, 需要计算机的差错控制能力<br>如果主机之间的传输要求是可靠的, 则有传输层负责<br>设计的好处: 网络造价降低, 运行方式灵活, 能适应多种应用  </p>
+</blockquote>
+<p>!<img src="http://blogpics.lenmain.cn/static/images/2020-06-22-08-04-09.png"></p>
+<h2 id="4-2-网际协议IP"><a href="#4-2-网际协议IP" class="headerlink" title="4.2 网际协议IP"></a>4.2 网际协议IP</h2><blockquote>
+<p>相关协议: 地址解析协议ARP, 网际控制报文协议ICMP, 网际组管理协议IGMP  </p>
+</blockquote>
+<ul>
+<li>虚拟互联网络</li>
+</ul>
+<blockquote>
+<p>不同的网络为了满足用户需求可能采用不同的协议和服务, 因此需要中间设备连接不同网络  </p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th align="center">工作层次</th>
+<th align="center">中间设备</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">物理层</td>
+<td align="center">转发器</td>
+</tr>
+<tr>
+<td align="center">数据链路层</td>
+<td align="center">网桥或桥接器</td>
+</tr>
+<tr>
+<td align="center">网络层</td>
+<td align="center">路由器</td>
+</tr>
+<tr>
+<td align="center">网络层以上</td>
+<td align="center">网关</td>
+</tr>
+</tbody></table>
+<ul>
+<li>IP的分类</li>
+</ul>
+<blockquote>
+<p>A类地址有8位网络号, 24位主机号, 首位为0<br>B类地址有16位网络号, 16位主机号, 前二位为10<br>C类地址有24位网络号, 8位主机号, 前三位为110<br>D类地址是1110+多播地址<br>E类地址保留, 前四位为1111<br>每一个IO地址都是由网络号和主机号两部分组成, 路由器仅根据网络号就可以转发分组<br>IP地址标志了一台主机和一条链路的接口, 当一台主机连接到多个网络上时, 同时有两个不同ip且网络号不同<br>用转发器或者网桥连接的局域网仍是一个网络  </p>
+</blockquote>
+<ul>
+<li>IP地址和硬件地址</li>
+</ul>
+<blockquote>
+<p>IP地址是逻辑地址, 由软件实现, 硬件地址是物理地址<br>在传送过程中IP数据报被封装成MAC帧, 源地址和目的地址根据物理地址<br>网络层的IP数据报和数据链路层的局域网互相不可见  </p>
+</blockquote>
+<ul>
+<li>地址解析协议ARP</li>
+</ul>
+<blockquote>
+<p>使用网络层的IP, 解析出数据链路层中使用的物理地址<br>ARP在主机高速ARP缓存中存放一个IP地址到物理地址的映射<br>如果缓存中有目的主机的物理地址就直接发送, 否则在网络中广播一个arp请求  </p>
+</blockquote>
+<ul>
+<li>IP数据报的格式</li>
+</ul>
+<p>!<img src="http://blogpics.lenmain.cn/static/images/2020-06-22-08-59-51.png"></p>
+<blockquote>
+<p>版本: IP协议的版本, 通信双方必须相同<br>首部长度: 单位为32位字, IP首部的固定部分长度为20字节<br>区分服务: 一般不使用<br>总长度: 首部和数据长度之和, 单位为字节, 因此最大总长为65535字节<br>标识: IP软件进行计数, 当IP数据报过大需要分片时, 将该数复制到标识中便于组装<br>标志: 三位中有两位有意义, 最低位为1表示后面还有分片, 中间位为1表示不可分片<br>片位移: 占13位. 分片在原分组的相对位置<br>生存时间: 占八位, 表明数据报在网络中的寿命<br>协议: 指明数据报携带数据的协议<br>首部检验和: 只检验首部<br>32位源地址和32位目的地址  </p>
+</blockquote>
+<ul>
+<li>IP层转发分组</li>
+</ul>
+<blockquote>
+<p>互联网中转发分组是从一个路由器到另一个路由器<br>IP转发根据路由表进行转发, 未记录的IP可以使用默认路由  </p>
+</blockquote>
+<h2 id="4-3-划分子网和构造超网"><a href="#4-3-划分子网和构造超网" class="headerlink" title="4.3 划分子网和构造超网"></a>4.3 划分子网和构造超网</h2><blockquote>
+<p>除了网络号和主机号, 添加子网号形成三级IP地址<br>划分子网: 将物理网络分为若干个子网, 对外仍然表现为一个网络<br>IP=网络号, 子网号, 主机号<br>从其他网络到来的IP数据报, 路由器根据目的网络号找到目的子网进行交付<br>子网掩码指出子网IP范围<br>在划分子网后, 路由表还需要包含子网掩码, 通过子网掩码取出正确的网络号和子网号便于确定转发  </p>
+</blockquote>
+<ul>
+<li>无分类编址CIDR(构建超网)  </li>
+</ul>
+<blockquote>
+<p>在IPV4地址耗尽后, 新的IPV6使用之前允许互联网的规模增长<br>CIDR消除了地址分类和划分子网的概念<br>重回两级编址, 分为网络前缀和主机号(斜线记法)<br>CIDR把网络前缀相同的连续的IP地址组成一个CIDR地址块<br>CIDR地址块可以包含多个C类地址, 可以构成超网<br>分组转发时, 选择匹配的具有最长网络前缀的匹配结果(使用二叉树线索查找路由表)  </p>
+</blockquote>
+<h2 id="4-4-网际控制报文协议ICMP"><a href="#4-4-网际控制报文协议ICMP" class="headerlink" title="4.4 网际控制报文协议ICMP"></a>4.4 网际控制报文协议ICMP</h2><blockquote>
+<p>为了有效地转发IP数据报和提高交付成功的机会, 在网际层使用网际控制报文协议(ICMP)<br>ICMP协议属于网络层, ICMP报文装在IP数据报中作为其中的数据部分<br>ICMP报文包含ICMP差错控制报文和ICMP询问报文<br>差错报告有四种: 终点不可达, 时间超过, 参数问题, 改变路由<br>询问报文分为两种: 回送请求和问答, 时间戳请求和回答  </p>
+</blockquote>
+<h2 id="4-5-互联网的路由选择协议"><a href="#4-5-互联网的路由选择协议" class="headerlink" title="4.5 互联网的路由选择协议"></a>4.5 互联网的路由选择协议</h2><blockquote>
+<p>静态路由选择, 动态路由选择<br>内部网关协议(IGP), 外部网关协议(EGP)  </p>
+</blockquote>
+<ul>
+<li>内部网关协议RIP</li>
+</ul>
+<blockquote>
+<p>基于距离向量的路由选择协议, 即跳数, 适用于小型互联网<br>仅与相邻路由器交换信息, 交换的是当前路由器所知道的全部信息<br>按固定的时间间隔交换路由信息<br>路由更新算法是距离向量法: 先将收到的路由表跳数+1在于现有路由表对比<br>RIP协议实现简单, 开销较小但是当网络出现故障时需要较长的时间才能将此次信息传遍所有路由器<br>RIP报文使用UDP进行发送  </p>
+</blockquote>
+<p>!<img src="http://blogpics.lenmain.cn/static/images/2020-06-23-10-32-05.png"></p>
+<ul>
+<li>内部网关协议OSPF  </li>
+</ul>
+<blockquote>
+<p>开放最短路径优先, 使用最短路径算法SPF  </p>
+<ol>
+<li>向本自治系统中所有路由器发送信息(洪泛法)  </li>
+<li>发送的信息是与本路由器相邻的所有路由器的链路状态  </li>
+<li>只有当链路状态发生变化时, 路由器才使用洪泛法像所路由器发送此信息<br>所有服务器都能建立一个链路状态数据库, 即全网的拓扑结构图<br>OSFG将自治系统分为若干个区域, 并使用层次结构的区域划分<br>最上层的区域是主干区域(0.0.0.0), 用于连通其他在下层的区域<br>OSPF直接使用IP数据报传送, 首部长度固定为24字节  </li>
+</ol>
+</blockquote>
+<p>!<img src="http://blogpics.lenmain.cn/static/images/2020-06-23-10-36-21.png"></p>
+<ul>
+<li><p>外部网关协议BGP</p>
+</li>
+<li><p>路由器的组成  </p>
+</li>
+</ul>
+<blockquote>
+<p>路由器有多个输入端口和多个输出端口, 分为路由选择部分和分组转发部分<br>分组转发部分包含一组输入端口, 一组输出端口, 交换结构<br>交换结构根据转发表对分组进行处理  </p>
+</blockquote>
+<h2 id="4-6-IPV4和IPV6"><a href="#4-6-IPV4和IPV6" class="headerlink" title="4.6 IPV4和IPV6"></a>4.6 IPV4和IPV6</h2><blockquote>
+<p>IPV6将地址从32位扩展到了128位, 地址空间更大, 首部格式更灵活<br>ipv6数据报=基本首部+有效载荷, 有效载荷允许有一个或多个扩展首部<br>IPV6目的地址可能是单播, 多播(一对多), 任播  </p>
+</blockquote>
+<ul>
+<li>由IPV4向IPV6过渡</li>
+</ul>
+<blockquote>
+<ol>
+<li>双协议栈<br>使部分路由器或主机装有双协议栈, 既能和IPV6系统通信, 又能和IPV4的系统通信<br>通信中可能造成ipv6首部中的某些信息缺失  </li>
+<li>隧道技术<br>在IPV6数据报进入IPV4网络之前, 把IPV6数据报封装成IPV4数据报<br>需要IPV4网络中有双协议栈  </li>
+</ol>
+</blockquote>
+<h2 id="IP多播"><a href="#IP多播" class="headerlink" title="IP多播"></a>IP多播</h2><blockquote>
+<p>多播数据报只需要发送一次, 路由器转发时需要进行复制, 在局域网中使用硬件多播<br>多播可以节省网络资源<br>使用D类地址表示多播目的地址, 多播地址只能用于目的地址<br>网际组管理协议: 使多播路由器知道本局域网上是否有主机参加或退出了某个局域网<br>多播路由选择协议: 动态地适应多播组成员的变化<br>转发多播数据报的方法: 洪泛和剪除, 隧道技术和基于核心的发现技术  </p>
+</blockquote>
+<h2 id="VPN和NAT"><a href="#VPN和NAT" class="headerlink" title="VPN和NAT"></a>VPN和NAT</h2><hr>
+<h1 id="5-传输层"><a href="#5-传输层" class="headerlink" title="5. 传输层"></a>5. 传输层</h1><h2 id="5-1-传输层协议概述"><a href="#5-1-传输层协议概述" class="headerlink" title="5.1 传输层协议概述"></a>5.1 传输层协议概述</h2><blockquote>
+<p>运输层向它上面的应用层提供服务, 通信的端点是主机的进程<br>一个主机中可以有多个进程同时和另一个主机的多个进程进行通信<br>复用: 发送方的不同应用进程使用同一个运输层协议传输数据<br>分用: 接收方的运输层在剥去报文的首部后可以将数据正确交付给应用进程<br>网络层位主机之间提供逻辑通信, 传输层为应用程序之间提供端到端逻辑通信<br>当传输层使用TCP协议时, 尽管下面的网络是不可靠的, 但是这种逻辑信道相当于一条全双工的可靠信道<br>当采用UDP协议时, 传输层逻辑信道仍是不可靠的  </p>
+</blockquote>
+<h2 id="5-2-UDP"><a href="#5-2-UDP" class="headerlink" title="5.2 UDP"></a>5.2 UDP</h2><blockquote>
+<p>无连接服务, 数据单位为UDP用户数据报, 传输之前不需要建立连接<br>UDP尽最大努力交付, 面向报文, 不会对上层传下的报文差分或者合并<br>UDP没有拥塞控制, 支持一对一, 一对多和多对多的交互通信<br>UDP的首部开销较小, 只有8个字节  </p>
+</blockquote>
+<ul>
+<li>UDP的首部格式</li>
+</ul>
+<p>!<img src="http://blogpics.lenmain.cn/static/images/2020-06-25-09-33-04.png"></p>
+<blockquote>
+<p>有四个字段, 每个字段占两个字节<br>源端口: 源端口号, 需要对方回信时使用<br>目的端口: 目的端口号, 在终点交付报文时必须使用<br>长度: UDP用户数据包的长度, 其最小值为8(字节)<br>检验和: 检验UDP用户数据报在传输中是否有错, 有错就丢弃<br>IP数据包的检验和只检验IP数据包的首部, 但UDP将首部和数据部分一起检验  </p>
+</blockquote>
+<h2 id="5-3-传输控制协议TCP"><a href="#5-3-传输控制协议TCP" class="headerlink" title="5.3 传输控制协议TCP"></a>5.3 传输控制协议TCP</h2><ul>
+<li>TCP协议的特点</li>
+</ul>
+<blockquote>
+<ol>
+<li>TCP是面向连接的传输层协议, 传输前建立连接, 传输后释放连接  </li>
+<li>每一个TCP连接只能有两个端点, 每一条TCP都是点对点的  </li>
+<li>TCP提供可靠交付的服务, 无差错, 不丢失, 不重复, 并且按需到达  </li>
+<li>TCP提供全双工通信, 两端都设有发送和接受缓存  </li>
+<li>TCP面向字节流<br>TCP可以对上层传下来的报文进行拆分或者合并  </li>
+</ol>
+</blockquote>
+<ul>
+<li>TCP的连接</li>
+</ul>
+<blockquote>
+<p>TCP连接的端点是套接字或插口, 端口号拼接到IP地址后构成套接字<br>每一条TCP连接唯一地被通信两个端点确定 </p>
+</blockquote>
+<h2 id="5-4-可靠传输的工作原理"><a href="#5-4-可靠传输的工作原理" class="headerlink" title="5.4 可靠传输的工作原理"></a>5.4 可靠传输的工作原理</h2><ol>
+<li>停止等待协议</li>
+</ol>
+<blockquote>
+<p>再每发送完一个分组就停止发送, 等待对方的确认, 收到确认后再发送下一个分组<br>每发送一个分组, 对其进行编号, 保留副本并设定一个超时计时器<br>若超过重传时间则重新发送分组, 重传时间比分组传输的平均往返时间长一些<br>若分组正确接收但分组的确认信号丢失, 发送方会在重传时间后重新发送<br>此时接收方会丢弃重复的分组并重新发送确认信号<br>确认信号迟到, 收到即丢弃<br>自动重传请求ARQ: 重传的请求是自动的, 接收方不需要请求发送方重传某个出错的分组<br>停等协议的信道利用率较低, 因此使用流水线式的连续ARQ协议和滑动窗口协议  </p>
+</blockquote>
+<ol start="2">
+<li>连续ARQ协议 </li>
+</ol>
+<blockquote>
+<p>发送方维护一个发送窗口, 窗口中的分组可以连续发送, 不需要等待确认<br>每收到对方的一个确认信号, 窗口向前滑动一个分组<br>接收方累计确认: 接收到数个分组后对按需到达的最后一个分组进行确认<br>提高信道利用率  </p>
+</blockquote>
+<ol start="3">
+<li>TCP报文首部</li>
+</ol>
+<p>!<img src="http://blogpics.lenmain.cn/static/images/2020-06-26-14-32-01.png"></p>
+<blockquote>
+<p>TCP前二十个字节是固定的, 后面4n个字节根据需要添加  </p>
+</blockquote>
+<h2 id="5-5-TCP可靠传输"><a href="#5-5-TCP可靠传输" class="headerlink" title="5.5 TCP可靠传输"></a>5.5 TCP可靠传输</h2><ul>
+<li>以字节为单位的滑动窗口 </li>
+</ul>
+<blockquote>
+<p>发送窗口的大小不能超过接受窗口, 在发送的时候可以根据对方窗口大小改变<br>接受方的确认号为按序接收的下一个序号, 数据的到达可能并不按顺序<br>虽然发送窗口根据接收窗口设置, 但在同一时刻, 发送窗口并不是和接收窗口一样大<br>对于不按需到达的数据先缓存再接收窗口中, 等到缺少的字节流收到后在交付给应用程序<br>接收方必须累计确认, 从而减少开销<br>TCP全双工通信, 双方都有发送窗口和接收窗口  </p>
+</blockquote>
+<ul>
+<li>超时重传时间的选择  </li>
+</ul>
+<blockquote>
+<p>使用自适应算法计算$RTT_s$(报文段往返时间加权平均值)  </p>
+</blockquote>
+<p>!<img src="http://blogpics.lenmain.cn/static/images/2020-06-26-15-08-59.png"></p>
+<blockquote>
+<p>超时重传时间RTO, RTT样本和$RTT_s$偏差值加权平均$RTT_D$  </p>
+</blockquote>
+<p>!<img src="http://blogpics.lenmain.cn/static/images/2020-06-26-15-10-32.png"></p>
+<blockquote>
+<p>$$RTO = RTT_S+4*RTT_D$$<br>为了得到正确的RTT样本, 如果报文段重传了, 就不采用其时间样本<br>每当出现重传的报文段, 就将RTO增大一些(2倍)  </p>
+</blockquote>
+<ul>
+<li>选择确认SACK</li>
+</ul>
+<blockquote>
+<p>TCP接收方在接受对方发送的数据字节流序号不连续, 形成不连续的字节块<br>在tcp首部选项允许选择确认, 可以报告不连续字节块的边界  </p>
+</blockquote>
+<h2 id="5-6-TCP流量流量控制"><a href="#5-6-TCP流量流量控制" class="headerlink" title="5.6 TCP流量流量控制"></a>5.6 TCP流量流量控制</h2><blockquote>
+<p>流量控制就是让发送速率不要太快, 使接受方来得及接收  </p>
+</blockquote>
+<ul>
+<li>利用滑动窗口实现流量控制 </li>
+</ul>
+<p>!<img src="http://blogpics.lenmain.cn/static/images/2020-06-26-15-30-37.png"></p>
+<blockquote>
+<p>确认信号中包含接收窗口大小(rwnd), 进行流量控制  </p>
+</blockquote>
+<h2 id="5-7-拥塞控制"><a href="#5-7-拥塞控制" class="headerlink" title="5.7 拥塞控制"></a>5.7 拥塞控制</h2><blockquote>
+<p>拥塞控制防止过多的数据注入到网络中, 防止路由器和连路过载, 涉及全局<br>流量控制指点对点通信量的控制, 使端到端问题  </p>
+</blockquote>
+<p>!<img src="http://blogpics.lenmain.cn/static/images/2020-06-26-15-47-13.png"></p>
+<blockquote>
+<p>4种拥塞控制方法: 慢开始, 拥塞避免, 快重传, 块恢复  </p>
+</blockquote>
+<h2 id="5-8-TCP的运输连接管理"><a href="#5-8-TCP的运输连接管理" class="headerlink" title="5.8 TCP的运输连接管理"></a>5.8 TCP的运输连接管理</h2><blockquote>
+<p>连接建立, 数据传送和连接释放<br>用三次握手建立tcp连接  </p>
+</blockquote>
+<p>!<img src="http://blogpics.lenmain.cn/static/images/2020-06-26-15-49-46.png"></p>
+<blockquote>
+<p>四次挥手释放连接  </p>
+</blockquote>
+<p>!<img src="http://blogpics.lenmain.cn/static/images/2020-06-26-15-51-08.png"></p>
+<h1 id="6-应用层"><a href="#6-应用层" class="headerlink" title="6. 应用层"></a>6. 应用层</h1><h2 id="6-1-域名系统DNS"><a href="#6-1-域名系统DNS" class="headerlink" title="6.1 域名系统DNS"></a>6.1 域名系统DNS</h2><blockquote>
+<p>DNS系统是一个分布式联机数据库系统, 采用客户服务器模式<br>DNS使得大多数名字在本地进行解析, 仅少数解析需要在互联网上通信<br>当一个应用程序需要把主机名解析为IP地址时. 该应用程序调用解析程序<br>把带解析的域名放在DNS解析报文中, 以UDP数据报的形式发送给本地域名服务器<br>若本地域名服务器不能解答该请求, 则此域名服务器就暂时成为DNS中的另一个客户<br>向其他域名服务器发出请求, 直到找到能够回答该请求的域名服务器为止<br>一个服务器所负责管辖的范围叫区, 区是域的子集  </p>
+</blockquote>
+<ul>
+<li>域名服务器的分类</li>
+</ul>
+<blockquote>
+<p>根域名服务器: 最高层次的域名服务器, 使用任播技术<br>顶级域名服务器: 负责管理在顶级域名服务器注册的所有二级域名<br>权限域名服务器: 负责一个区的域名服务器<br>本地域名服务器  </p>
+</blockquote>
+<h2 id="6-2文件传送协议"><a href="#6-2文件传送协议" class="headerlink" title="6.2文件传送协议"></a>6.2文件传送协议</h2><ul>
+<li>FTP</li>
+</ul>
+<blockquote>
+<p>FTP基于TCP, 简单文件传送协议TFTP基于UDP<br>他们都是文件分享协议, 复制整个文件, 存取修改文件都要先获取本地副本<br>FTP使用客户服务器模式, 一个服务器进程可以同时为多个用户提供服务<br>服务进程有一个主进程, 接受新的请求, 和若干个从属进程, 处理单个请求<br>在进行传输时, 客户和服务器之间要建立两个并行的TCP连接: 控制连接和数据连接   </p>
+</blockquote>
+<h2 id="6-3-万维网www"><a href="#6-3-万维网www" class="headerlink" title="6.3 万维网www"></a>6.3 万维网www</h2><blockquote>
+<p>统一资源定位符URL表示互联网上资源的位置和访问这些资源的方法<br>超文本传输协议HTTP: 面向事务的应用层协议<br>HTTP有两种报文: 请求报文, 响应报文  </p>
+</blockquote>
+<h2 id="6-4-电子邮件"><a href="#6-4-电子邮件" class="headerlink" title="6.4 电子邮件"></a>6.4 电子邮件</h2><blockquote>
+<p>简单邮件传送协议SMTP:连接建立,邮件传送,连接释放<br>通用互联网邮件扩充MIME  </p>
+</blockquote>
+<h2 id="6-5-动态主机配置协议DHCP"><a href="#6-5-动态主机配置协议DHCP" class="headerlink" title="6.5 动态主机配置协议DHCP"></a>6.5 动态主机配置协议DHCP</h2><blockquote>
+<p>即插即用联网,允许一台计算机加入新的网络获取IP不需要手动参与  </p>
+</blockquote>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/09/21/hello-world/" rel="prev" title="Hello World">
+      <i class="fa fa-chevron-left"></i> Hello World
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/09/25/%E7%AC%94%E8%AE%B0%E6%A8%A1%E6%9D%BF/" rel="next" title="笔记模板">
+      笔记模板 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E4%BD%93%E7%B3%BB%E7%BB%93%E6%9E%84"><span class="nav-number">1.</span> <span class="nav-text">1. 计算机网络体系结构</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E6%A6%82%E5%BF%B5-%E7%BB%84%E6%88%90%E5%92%8C%E5%8A%9F%E8%83%BD"><span class="nav-number">1.1.</span> <span class="nav-text">1.1. 计算机网络的概念, 组成和功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E5%88%86%E7%B1%BB"><span class="nav-number">1.2.</span> <span class="nav-text">1.2. 计算机网络的分类</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%9A%84%E6%80%A7%E8%83%BD"><span class="nav-number">1.3.</span> <span class="nav-text">1.3. 计算机网络的性能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E6%A0%87%E5%87%86%E5%8C%96%E4%BB%A5%E5%8F%8A%E7%9B%B8%E5%85%B3%E7%BB%84%E7%BB%87"><span class="nav-number">1.4.</span> <span class="nav-text">1.4. 计算机网络标准化以及相关组织</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-5-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C%E7%BB%93%E6%9E%84%E5%88%86%E5%B1%82%E6%A6%82%E5%BF%B5"><span class="nav-number">1.5.</span> <span class="nav-text">1.5. 计算机网络结构分层概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-6-OSI%E4%B8%83%E5%B1%82%E6%9C%BA%E6%9E%84%E5%92%8CTCP-IP%E5%9B%9B%E5%B1%82%E7%BB%93%E6%9E%84"><span class="nav-number">1.6.</span> <span class="nav-text">1.6. OSI七层机构和TCP&#x2F;IP四层结构</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-%E7%89%A9%E7%90%86%E5%B1%82"><span class="nav-number">2.</span> <span class="nav-text">2. 物理层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-%E7%89%A9%E7%90%86%E5%B1%82%E5%9F%BA%E6%9C%AC%E6%A6%82%E5%BF%B5"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 物理层基本概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2-%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1%E6%A8%A1%E5%9E%8B"><span class="nav-number">2.2.</span> <span class="nav-text">2.2 数据通信模型</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-%E4%BF%A1%E9%81%93"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 信道</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-%E7%89%A9%E7%90%86%E5%B1%82%E4%BC%A0%E8%BE%93%E5%AA%92%E4%BD%93"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 物理层传输媒体</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-%E4%BF%A1%E9%81%93%E5%A4%8D%E7%94%A8%E6%8A%80%E6%9C%AF"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 信道复用技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-%E5%AE%BD%E5%B8%A6%E6%8E%A5%E5%85%A5%E6%8A%80%E6%9C%AF"><span class="nav-number">2.6.</span> <span class="nav-text">2.6 宽带接入技术</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82"><span class="nav-number">3.</span> <span class="nav-text">3. 数据链路层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-%E4%BD%BF%E7%94%A8%E7%82%B9%E5%AF%B9%E7%82%B9%E4%BF%A1%E9%81%93"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 使用点对点信道</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-%E7%82%B9%E5%AF%B9%E7%82%B9%E5%8D%8F%E8%AE%AE"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 点对点协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-%E4%BD%BF%E7%94%A8%E5%B9%BF%E6%92%AD%E4%BF%A1%E9%81%93"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 使用广播信道</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-4-%E6%89%A9%E5%B1%95%E4%BB%A5%E5%A4%AA%E7%BD%91"><span class="nav-number">3.4.</span> <span class="nav-text">3.4 扩展以太网</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-%E7%BD%91%E7%BB%9C%E5%B1%82"><span class="nav-number">4.</span> <span class="nav-text">4. 网络层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-%E7%BD%91%E7%BB%9C%E5%B1%82%E6%8F%90%E4%BE%9B%E7%9A%84%E4%B8%A4%E7%A7%8D%E6%9C%8D%E5%8A%A1"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 网络层提供的两种服务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-%E7%BD%91%E9%99%85%E5%8D%8F%E8%AE%AEIP"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 网际协议IP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-3-%E5%88%92%E5%88%86%E5%AD%90%E7%BD%91%E5%92%8C%E6%9E%84%E9%80%A0%E8%B6%85%E7%BD%91"><span class="nav-number">4.3.</span> <span class="nav-text">4.3 划分子网和构造超网</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-%E7%BD%91%E9%99%85%E6%8E%A7%E5%88%B6%E6%8A%A5%E6%96%87%E5%8D%8F%E8%AE%AEICMP"><span class="nav-number">4.4.</span> <span class="nav-text">4.4 网际控制报文协议ICMP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-%E4%BA%92%E8%81%94%E7%BD%91%E7%9A%84%E8%B7%AF%E7%94%B1%E9%80%89%E6%8B%A9%E5%8D%8F%E8%AE%AE"><span class="nav-number">4.5.</span> <span class="nav-text">4.5 互联网的路由选择协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-IPV4%E5%92%8CIPV6"><span class="nav-number">4.6.</span> <span class="nav-text">4.6 IPV4和IPV6</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IP%E5%A4%9A%E6%92%AD"><span class="nav-number">4.7.</span> <span class="nav-text">IP多播</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#VPN%E5%92%8CNAT"><span class="nav-number">4.8.</span> <span class="nav-text">VPN和NAT</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-%E4%BC%A0%E8%BE%93%E5%B1%82"><span class="nav-number">5.</span> <span class="nav-text">5. 传输层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-%E4%BC%A0%E8%BE%93%E5%B1%82%E5%8D%8F%E8%AE%AE%E6%A6%82%E8%BF%B0"><span class="nav-number">5.1.</span> <span class="nav-text">5.1 传输层协议概述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-UDP"><span class="nav-number">5.2.</span> <span class="nav-text">5.2 UDP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-%E4%BC%A0%E8%BE%93%E6%8E%A7%E5%88%B6%E5%8D%8F%E8%AE%AETCP"><span class="nav-number">5.3.</span> <span class="nav-text">5.3 传输控制协议TCP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-4-%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93%E7%9A%84%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86"><span class="nav-number">5.4.</span> <span class="nav-text">5.4 可靠传输的工作原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-5-TCP%E5%8F%AF%E9%9D%A0%E4%BC%A0%E8%BE%93"><span class="nav-number">5.5.</span> <span class="nav-text">5.5 TCP可靠传输</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-6-TCP%E6%B5%81%E9%87%8F%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6"><span class="nav-number">5.6.</span> <span class="nav-text">5.6 TCP流量流量控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-7-%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6"><span class="nav-number">5.7.</span> <span class="nav-text">5.7 拥塞控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-8-TCP%E7%9A%84%E8%BF%90%E8%BE%93%E8%BF%9E%E6%8E%A5%E7%AE%A1%E7%90%86"><span class="nav-number">5.8.</span> <span class="nav-text">5.8 TCP的运输连接管理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#6-%E5%BA%94%E7%94%A8%E5%B1%82"><span class="nav-number">6.</span> <span class="nav-text">6. 应用层</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#6-1-%E5%9F%9F%E5%90%8D%E7%B3%BB%E7%BB%9FDNS"><span class="nav-number">6.1.</span> <span class="nav-text">6.1 域名系统DNS</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-2%E6%96%87%E4%BB%B6%E4%BC%A0%E9%80%81%E5%8D%8F%E8%AE%AE"><span class="nav-number">6.2.</span> <span class="nav-text">6.2文件传送协议</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-3-%E4%B8%87%E7%BB%B4%E7%BD%91www"><span class="nav-number">6.3.</span> <span class="nav-text">6.3 万维网www</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-4-%E7%94%B5%E5%AD%90%E9%82%AE%E4%BB%B6"><span class="nav-number">6.4.</span> <span class="nav-text">6.4 电子邮件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-5-%E5%8A%A8%E6%80%81%E4%B8%BB%E6%9C%BA%E9%85%8D%E7%BD%AE%E5%8D%8F%E8%AE%AEDHCP"><span class="nav-number">6.5.</span> <span class="nav-text">6.5 动态主机配置协议DHCP</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">lenmain</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">lenmain</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> v5.2.0
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">Theme – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
