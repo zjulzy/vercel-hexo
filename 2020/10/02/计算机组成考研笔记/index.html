@@ -1,0 +1,553 @@
+<!DOCTYPE html><html lang="zh-cn"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>计算机组成考研笔记 | Hexo</title><script src="https://cdn.bootcss.com/valine/1.4.4/Valine.min.js"></script><link rel="stylesheet" href="/css/arknights.css"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.1.2/styles/atom-one-dark-reasonable.min.css"><style>@font-face {
+ font-family: BenderLight;
+ src: local('Bender'), url("/font/BenderLight.ttf");
+}
+@font-face {
+ font-family: 'JetBrains Mono';
+ src: local('JetBrains Mono'), url('/font/JetBrainsMono-Regular.woff2') format('woff2');
+}</style><meta name="generator" content="Hexo 5.2.0"></head><body><header><nav><a href="/">Home</a><a href="/archives/">Archives</a></nav></header><main><article><div id="post-bg"><div id="post-title"><div id="post-info"><span>date:<time datetime="2020-10-02T07:47:21.000Z" id="date"> 2020-10-02</time></span><br><span>updated:<time datetime="2020-10-02T08:03:59.063Z" id="updated"> 2020-10-02</time></span></div><h1>计算机组成考研笔记</h1><hr></div><div id="post-content"><h1 id="计算机组成原理"><a href="#计算机组成原理" class="headerlink" title="计算机组成原理"></a>计算机组成原理</h1></li>
+</ul>
+<h2 id="1-1-计算机系统简介"><a href="#1-1-计算机系统简介" class="headerlink" title="1.1 计算机系统简介"></a>1.1 计算机系统简介</h2><ul>
+<li><p>计算机软硬件  </p>
+<p>计算机软件通常可以分为系统软件和应用软件</p>
+</li>
+<li><p>计算机系统的层次结构</p>
+<p>两级层次结构：汇编语言虚拟机器，机器语言实际机器<br>三级层次结构：高级语言虚拟机器，汇编语言虚拟机器，机器语言实际机器<br>机器语言可向下扩展微程序机器，向上扩展操作系统机器</p>
+</li>
+</ul>
+<h2 id="1-2-计算机的基本组成"><a href="#1-2-计算机的基本组成" class="headerlink" title="1.2 计算机的基本组成"></a>1.2 计算机的基本组成</h2><ul>
+<li><p>冯·诺伊曼计算机的特点</p>
+<ol>
+<li>计算机由运算器，存储器，控制器和输入输出设备组成  </li>
+<li>指令和数据以同等地位存放于存储器中，并可按地址寻访</li>
+<li>指令和地址均以二进制表示</li>
+<li>指令由操作码和地址码组成，操作码用来表示操作的性质，地址码用来表示操作数所在存储器中的位置  </li>
+<li>指令在存储器中按序存放，通常是顺序执行的  </li>
+<li>机器以运算器为中心，输入输出设备与存储器的数据传送通过运算器</li>
+</ol>
+<blockquote>
+<p>典型的冯·诺伊曼计算机是以运算器为中心的，现代的计算机已转化为以存储器位中心  </p>
+</blockquote>
+</li>
+</ul>
+<h2 id="1-3-计算机硬件技术指标"><a href="#1-3-计算机硬件技术指标" class="headerlink" title="1.3 计算机硬件技术指标"></a>1.3 计算机硬件技术指标</h2><ol>
+<li><p>机器字长</p>
+<p>机器字长是指CPU一次能处理的数据的位数<br>字长越长, 数的表示范围越大, 精度也越高, 运算速度更快</p>
+</li>
+</ol>
+<ol start="2">
+<li><p>存储容量:存储容量 = 存储单元个数*存储字长  </p>
+<p>一般情况下, 存储字长和机器字长相等</p>
+</li>
+<li><p>运算速度:吉普森法</p>
+<p>$$T_M = \sum_1^n f_tt_i$$<br>现代机器的运算速度普遍采用单位时间内执指令的平均条数来衡量, 即MIPS</p>
+</li>
+</ol>
+<h1 id="2-计算机的发展和应用"><a href="#2-计算机的发展和应用" class="headerlink" title="2. 计算机的发展和应用"></a>2. 计算机的发展和应用</h1><h2 id="2-1-计算机发展史"><a href="#2-1-计算机发展史" class="headerlink" title="2.1 计算机发展史"></a>2.1 计算机发展史</h2><ol>
+<li>第一代电子管计算机</li>
+<li>第二代晶体管计算机</li>
+<li>第三代集成电路计算机</li>
+<li>微型计算机的出现</li>
+</ol>
+<h2 id="2-2-计算机的应用"><a href="#2-2-计算机的应用" class="headerlink" title="2.2 计算机的应用"></a>2.2 计算机的应用</h2><ol>
+<li>科学计算和数据处理</li>
+<li>工业控制和实时控制</li>
+</ol>
+<h1 id="3-系统总线"><a href="#3-系统总线" class="headerlink" title="3. 系统总线"></a>3. 系统总线</h1><h2 id="3-1-总线的定义"><a href="#3-1-总线的定义" class="headerlink" title="3.1 总线的定义"></a>3.1 总线的定义</h2><blockquote>
+<p>两种设备连接方式: 分散连接, 总线连接  </p>
+</blockquote>
+<p><strong>总线</strong>是连接多个部件的信息传输线, 是各部件共享的传输介质<br>在同一时刻, 只允许有一个部件向总线发送信号, 而多个部件可以从总线上接受相同的信息<br>总线结构采用并行传输, 分为双总线结构和单总线结构</p>
+<h2 id="3-2-总线的分类"><a href="#3-2-总线的分类" class="headerlink" title="3.2 总线的分类"></a>3.2 总线的分类</h2><ul>
+<li><p>片内总线</p>
+<p>CPU内部, 寄存器和寄存器之间, 寄存器和算术逻辑单元之间</p>
+</li>
+<li><p>系统总线</p>
+<ol>
+<li><p>数据总线</p>
+<p>传输各功能之间的数据信息, 双向传输总线, 位数和机器字长和存储字长有关</p>
+</li>
+<li><p>地址总线</p>
+<p>主要用来指出数据总线上的源数据或目的数据在主存单元的地址, 单向传输, 位数和存储单元的个数有关</p>
+</li>
+<li><p>控制总线</p>
+<p>用来发出各种控制信号, 决定各部件在不同时刻占用的总线使用权, 单线传输</p>
+</li>
+</ol>
+</li>
+<li><p>通信总线</p>
+<p>用于计算机系统之间或者计算机系统与其它系统之间的通信, 串行或并行</p>
+</li>
+</ul>
+<h2 id="3-3-总线的特性以及指标"><a href="#3-3-总线的特性以及指标" class="headerlink" title="3.3 总线的特性以及指标"></a>3.3 总线的特性以及指标</h2><ul>
+<li>总线特性: 机械特性, 电气特性, 功能特性, 时间特性</li>
+<li>总线性能: 总线宽度, 标准传输率(MB/s), 时钟同步/异步, 总线复用, 信号线数, 总线控制方式</li>
+</ul>
+<blockquote>
+<p>总线标准: ISA, EISA, VL-BUS, PCI</p>
+</blockquote>
+<h2 id="3-4-总线结构"><a href="#3-4-总线结构" class="headerlink" title="3.4 总线结构"></a>3.4 总线结构</h2><ol>
+<li><p>单总线结构</p>
+</li>
+<li><p>多总线结构:将速度较低的I/O设备从单总线中分离出来,形成主存总线和I/O总线分开的结构</p>
+<p>将速率不同的I/O设备进行分类, 可以提高计算机系统的利用率</p>
+</li>
+</ol>
+<h2 id="3-5-总线控制"><a href="#3-5-总线控制" class="headerlink" title="3.5 总线控制"></a>3.5 总线控制</h2><blockquote>
+<p>总线上的设备按其对总线有无控制功能可以分为主设备和从设备两种.<br>若多个主设备同时想要使用总线, 就由总线控制器判优, 仲裁逻辑按一定的优先等级排序  </p>
+</blockquote>
+<ul>
+<li>总线判优控制</li>
+</ul>
+<ol>
+<li><p>链式查询</p>
+<p>如果BG(总线同意)到达的设备有总线请求, BG信号就不再往下传, 并建立总线忙(BS)信号, 易扩充设备但是对电路故障敏感  </p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-07-03-16-39-45.png">
+</li>
+<li><p>计时器定时查询</p>
+<p>当接到请求时, 由计数器开始计数, 向各设备发出一组地址信号, 当请求设备地址和计数值一致时, 获得总线控制权</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-07-03-16-39-57.png">
+</li>
+<li><p>独立请求方式</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-07-03-16-40-12.png">
+</li>
+</ol>
+<ul>
+<li><p>总线通信控制</p>
+<p>总线完成一次传输周期时, 分为四个阶段: 申请分配阶段, 寻址阶段, 传数阶段, 结束阶段</p>
+<ol>
+<li><p>同步通信</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-07-03-17-01-06.png">
+</li>
+<li><p>异步通信：分为不互锁，半互锁和全互锁三种  </p>
+</li>
+<li><p>半同步通信</p>
+</li>
+<li><p>分离式通信</p>
+</li>
+</ol>
+</li>
+</ul>
+<h1 id="4-存储器"><a href="#4-存储器" class="headerlink" title="4. 存储器"></a>4. 存储器</h1><h2 id="4-1-存储器分类"><a href="#4-1-存储器分类" class="headerlink" title="4.1 存储器分类"></a>4.1 存储器分类</h2><blockquote>
+<p>按照存储介质: 半导体存储器, 磁表面存储器, 磁芯存储器, 光盘存储器<br>按照存储方式: 随机存储器RAM, 只读存储器ROM, 串行访问存储器<br>按在计算机中的作用分类: 主存储器, 辅助存储器, 缓冲存储器  </p>
+</blockquote>
+<ul>
+<li><p>存储器的层析结构</p>
+<p>一般来说, 存储器速度越快, 价位就越高, 容量越大, 价位就越低, 容量越大, 速度越低; 存储器的层次结构主要可以体现在缓存-主存和主存-辅存这两个存储层次上  </p>
+</li>
+</ul>
+<h2 id="4-2-主存储器"><a href="#4-2-主存储器" class="headerlink" title="4.2 主存储器"></a>4.2 主存储器</h2><p>![主存和cpu的关系](2020-07-04-16-50-48.png %}</p>
+<p>MAR存储读写信息的地址, MDR存储读出或写入的数据, MAR和MDR在CPU芯片之内, 寻址方式有按字寻址和按字节寻址</p>
+<ul>
+<li><p>主存的指数指标(存储容量和存储速度)</p>
+<p>$$存储容量 = 存储单元数 * 存储字长$$<br>存储容量的单位常用字节表示<br>存储速度由存取时间和存取周期来表示, 存储时间表示启动一次存储器操作到完成该操作需要的全部时间; 存储周期是指存储器进行两次独立的存储器操作所需的最小时间间隔  </p>
+</li>
+</ul>
+<h2 id="4-3-随机存取寄存器读写-RAM"><a href="#4-3-随机存取寄存器读写-RAM" class="headerlink" title="4.3 随机存取寄存器读写(RAM)"></a>4.3 随机存取寄存器读写(RAM)</h2><ol>
+<li><p>静态RAM</p>
+<p>静态RAM由触发器存储信息，信息读出后仍保持原样，不需要再生<br>地址输入端，数据输入/输出短，片选信号CS，写允许信号WE<br>读周期时序：</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-07-05-14-54-53.png">
+<p>写周期时序：</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-07-05-14-55-44.png">
+</li>
+<li><p>动态RAM</p>
+<p>动态RAM使用电容存储电荷来存储信息，因此必须定期对所有存储单元恢复一次原状态，即刷新. 行列地址分两次传送, RAS, CAS<br>动态RAM写周期时序:</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-07-05-15-00-30.png">
+<p>动态RAM读周期时序:</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-07-05-15-00-21.png">
+</li>
+</ol>
+<ul>
+<li><p>动态RAM的刷新</p>
+<ol>
+<li>集中刷新:在规定的一个刷新周期内,对所有存储单元集中一段时间逐一进行刷新,此刻必须停止读写操作,逐行进行刷新,每次刷新消耗时间为一个读写周期,可能出现”死区”  </li>
+<li>分散刷新:对每行存储单元的刷新分散到每个读/写周期内完成,将存取周期分成两部分,前半段用来读写或者维持,后半段用来刷新,克服死区,但使整机工作效率下降  </li>
+</ol>
+<p>采用集中和分散相结合, 减少死区时间</p>
+</li>
+<li><p>动态RAM和静态RAM的比较</p>
+<p>动态RAM集成度远高于静态RAM, 动态RAM功耗较少<br>动态RAM价格较低, 速度更高, 广泛应用于计算机主存  </p>
+</li>
+</ul>
+<h2 id="4-4-只读存储器-ROM"><a href="#4-4-只读存储器-ROM" class="headerlink" title="4.4 只读存储器(ROM)"></a>4.4 只读存储器(ROM)</h2><ol>
+<li><p>掩膜ROM</p>
+</li>
+<li><p>PROM</p>
+<p>可以实现一次性编程的只读存储器, 只能实现一次编程, 不得再修改</p>
+</li>
+<li><p>EPROM</p>
+<p>可擦洗可编程的只读存储器</p>
+</li>
+</ol>
+<h2 id="4-5-存储器和CPU的连接"><a href="#4-5-存储器和CPU的连接" class="headerlink" title="4.5 存储器和CPU的连接"></a>4.5 存储器和CPU的连接</h2><ol>
+<li><p>存储容量的扩展</p>
+<ul>
+<li>位扩展(增加存储字长)</li>
+<li>字扩展(增加存储器字的数量, 使用片选译码)</li>
+<li>字, 位扩展(既增加字的数量, 又增加存储字长)</li>
+</ul>
+</li>
+<li><p>存储器和CPU相连接</p>
+<ul>
+<li><p>地址线的连接</p>
+<p>通常将cpu的低位地址线和存储器想连,高位地址线一般用于芯片扩展 </p>
+</li>
+<li><p>数据线的连接</p>
+</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li><p>读写命令线的连接</p>
+</li>
+<li><p>片选线的连接   </p>
+<p>片选信号和CPU的方寸控制信号MREQ(低电平有效)有关 </p>
+</li>
+<li><p>合理选用存储芯片    </p>
+<p>选择合理的RAM或ROM及其数量<br>一般ROM存放系统程序,标准子程序和各种常数等,RAM用于用户编程</p>
+</li>
+</ul>
+<ol start="3">
+<li><p>存储器的校验</p>
+<p>海明码具有一位纠错能力，编码的检错能力和纠错能力和编码的最小编码距离有关<br>$$L-1 = D+C D&gt;=C$$<br>欲检测的二进制代码为n位, 添加k位检测位, 为准确定位错误或者纠错能力<br>应该满足$2^k&gt;= n+k+1$<br>海明码的k位检测码分别安插在n+k位代码编号的1, 2, 4…2^(k-1)位上<br>每个位置的检测码代表不同数位组成的小组, 使检测位和它负责的检测小组所含1的个数为奇数或者偶数<br>海明码的纠错过程: 对传送后的海明码形成新的检测位, 根据新检测位的状态可直接指出错误的位置</p>
+</li>
+<li><p>提高访存速度</p>
+<ul>
+<li>单体多字系统</li>
+<li>多体并行系统</li>
+<li>cache：任何时候都有一些主存块位于缓存块中，, 访问主存时先访问cache, 命中则直接访问, 未命中将主存块调入缓存  </li>
+</ul>
+</li>
+<li><p>Cache主存地址映像</p>
+<ul>
+<li>直接映像</li>
+<li>全相联映像(相联存储器, 成本高)</li>
+<li>组相联映像(cache每组可以存储多个字块)</li>
+<li>段相联映像(段之间全相联, 段内直接)            </li>
+</ul>
+</li>
+<li><p>Cache主存块替换算法</p>
+<ul>
+<li>先进先出(FIFO)算法</li>
+<li>近期最少使用(LRU)算法</li>
+</ul>
+</li>
+</ol>
+<h2 id="4-6-辅助存储器"><a href="#4-6-辅助存储器" class="headerlink" title="4.6 辅助存储器"></a>4.6 辅助存储器</h2><p>  辅助存储器简称外存, 与主存一起构成了主存-辅存层次, 具有容量大, 速度慢, 价格低等特点, 属于”非易失性”存储器. 目前广泛用于计算机系统的辅助存储器一般是磁表面存储器.</p>
+<ul>
+<li><p>技术指标</p>
+<ol>
+<li>记录密度(单位长度内存储的二进制信息)</li>
+<li>存储容量(C=n<em>k</em>s,分为格式化容量和非格式化容量)</li>
+<li>平均寻址时间:平均找道时间和平均等待时间的和</li>
+<li>数据传输率</li>
+<li>误码率</li>
+</ol>
+</li>
+<li><p>硬磁盘存储器</p>
+<p>磁盘控制器, 磁盘驱动器, 盘片</p>
+</li>
+<li><p>软磁盘存储器</p>
+<p>硬盘转速快, 存取速度快, 软盘转速低, 存取速度慢  </p>
+</li>
+<li><p>磁带存储器</p>
+<p>磁盘是直接存取设备, 磁带必须进行顺序存取</p>
+</li>
+<li><p>光盘存储器</p>
+</li>
+</ul>
+<h1 id="5-输入输出系统"><a href="#5-输入输出系统" class="headerlink" title="5. 输入输出系统"></a>5. 输入输出系统</h1><h2 id="5-1-IO系统的组成"><a href="#5-1-IO系统的组成" class="headerlink" title="5.1 IO系统的组成"></a>5.1 IO系统的组成</h2><ol>
+<li><p>I/O软件</p>
+<p>将用户编写的程序和数据输入到主机内, 将运算结果传输给用户, 实现I/系统和主机工作的协调</p>
+<ul>
+<li>IO指令</li>
+<li>通道指令</li>
+</ul>
+</li>
+<li><p>I/O硬件</p>
+</li>
+</ol>
+<h2 id="5-3-IO设备和主机的联系方式"><a href="#5-3-IO设备和主机的联系方式" class="headerlink" title="5.3 IO设备和主机的联系方式"></a>5.3 IO设备和主机的联系方式</h2><ul>
+<li>IO编址方式: 统一编址和不统一编址</li>
+<li>设备寻址</li>
+<li>传送方式: 并行, 串行</li>
+<li>联络方式: 立即响应方式, 异步工作应答信号, 同步时标联络</li>
+<li>IO与主机之间的连接方式: 辐射式和总线式</li>
+</ul>
+<h2 id="5-4-IO与主机信息传送的控制方式"><a href="#5-4-IO与主机信息传送的控制方式" class="headerlink" title="5.4 IO与主机信息传送的控制方式"></a>5.4 IO与主机信息传送的控制方式</h2><ol>
+<li><p>程序查询方式</p>
+<p>CPU通过程序不断查询IO设备是否已经做好准备, 从而控制IO设备和主机交换信息, CPU工作效率低</p>
+</li>
+<li><p>程序中断方式</p>
+<p>CPU在启动IO设备后, 当IO设备准备好并向CPU发出中断请求后处理IO, 提高了CPU工作效率</p>
+</li>
+<li><p>DMA方式</p>
+<p>主存和I/O设备之间有一条数据通路, 主存和I/O设备交换信息时, 无需处理中断, 若DMA和CPU同时访问主存, CPU总是将总线占有权交给DMA, 即窃取周期, 因此DMA比程序中断方式效率更高  </p>
+</li>
+</ol>
+<h2 id="5-5-外部设备"><a href="#5-5-外部设备" class="headerlink" title="5.5 外部设备"></a>5.5 外部设备</h2><ol>
+<li>输入设备:键盘,鼠标器,触摸屏</li>
+<li>输出设备:CRT,打印设备</li>
+</ol>
+<h2 id="5-6-IO接口"><a href="#5-6-IO接口" class="headerlink" title="5.6 IO接口"></a>5.6 IO接口</h2><ul>
+<li><p>总线连接的IO接口</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-01-16-11-09.png">
+<p>数据线，端口选择线，命令线，状态线</p>
+</li>
+<li><p>接口的功能和组成</p>
+<ol>
+<li>选址功能</li>
+<li>传送命令</li>
+<li>传送数据</li>
+<li>反映IO设备工作状态</li>
+</ol>
+</li>
+</ul>
+<h2 id="5-7-程序查询方式"><a href="#5-7-程序查询方式" class="headerlink" title="5.7 程序查询方式"></a>5.7 程序查询方式</h2><p>  程序查询方式按照各个设备在系统中的优先级进行逐级查询<br>  首先执行测试指令，若设备已经准备就绪，执行传送指令，否则执行转移指令</p>
+<h2 id="5-8-中断方式"><a href="#5-8-中断方式" class="headerlink" title="5.8 中断方式"></a>5.8 中断方式</h2><ul>
+<li><p>中断请求触发器和中断屏蔽触发器</p>
+<p>每台外设配置一个中断请求触发器INTR，当其为1时，表示该设备向CPU提出中断请求<br>CPU在同一时间只能相应一个中断源的中断请求，在IO接口设置一个MASK屏蔽触发器，对各中断进行排队<br>设备优先权的处理可以采用硬件或者软件方法，链式排队电路</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-01-16-52-18.png">
+</li>
+<li><p>中断服务程序流程</p>
+<ol>
+<li>保护现场：保存程序断点，保存寄存器内容</li>
+<li>中断服务：设备服务</li>
+<li>恢复现场：回复寄存器信息</li>
+<li>中断返回：回到原来程序的断点处</li>
+</ol>
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-01-16-58-28.png">
+<p>多重终端在保护现场之后就可以开中断，允许更高级中断请求，单重中断在恢复现场后开中断</p>
+</li>
+</ul>
+<h2 id="5-9-DMA方式"><a href="#5-9-DMA方式" class="headerlink" title="5.9 DMA方式"></a>5.9 DMA方式</h2><p>  主存和DMA接口之间有一条数据通路, 因此主存和设备交换信息时不需要通过CPU, 省去了保护现场和恢复现场的时间, 因此工作速度比程序中断方式高<br>  若DMA和CPU争用主存，则通过停止COU访问主存，周期挪用，交替访问解决  </p>
+<ul>
+<li><p>DMA工作过程</p>
+<p>DMA的数据传送过程分为预处理，数据传送和后处理三个过程</p>
+<ol>
+<li>预处理：指明数据传输方向，向DMA寄存器输入设备号，启动设备。对字计数器赋以交换数据的个数</li>
+<li>数据传送：以数据块为单位</li>
+<li>后处理：校验数据块并检查是否继续使用DMA</li>
+</ol>
+</li>
+</ul>
+<h1 id="6-计算机的运算方式"><a href="#6-计算机的运算方式" class="headerlink" title="6. 计算机的运算方式"></a>6. 计算机的运算方式</h1><h2 id="6-1-移码表示法"><a href="#6-1-移码表示法" class="headerlink" title="6.1 移码表示法"></a>6.1 移码表示法</h2><p>  补码不能直观反映出数据的相对大小, 一次引入移码<br>  $$ [x]_(移)=2^(n)+x $$</p>
+<h2 id="6-2-数的定点表示和浮点表示"><a href="#6-2-数的定点表示和浮点表示" class="headerlink" title="6.2 数的定点表示和浮点表示"></a>6.2 数的定点表示和浮点表示</h2><p>  定点数处理非整数或纯小数时容易发生溢出</p>
+<ul>
+<li><p>浮点数表示形式</p>
+<p> 浮点数由阶码j和尾数S组成,分别有阶符和阶码,表示浮点数的范围和浮点数的精度<br>浮点数超出表示范围会发生下溢或上溢,阶码数值位有m位,尾数的数值位取n位,浮点数表示范围为$$-2^(2^m-1)*(1-2^(-n))~ -2^(-2^m+1)<em>2^(-n)  2^(2^m-1)</em>(1-2^(-n))~ 2^(-2^m+1)*2^(-n)$$<br>通过移尾数和修改阶数的方法可以使浮点数规格化<br>相同位数的浮点数和定点数,浮点数的表示范围更大,精度更高在溢出的判断方法不同 </p>
+</li>
+</ul>
+<h2 id="6-3-定点运算"><a href="#6-3-定点运算" class="headerlink" title="6.3 定点运算"></a>6.3 定点运算</h2><p>定点运算包括移位, 加, 减, 乘, 除</p>
+<ol>
+<li><p>移位运算</p>
+<p>对于有符号数, 移位操作称为算术移位<br>算术移位规则: 正数移位后出现的空位用0填补. 对于负数, 原码补0, 补码在左移时补0, 右移时补1, 反码补1<br>正数移码在左移时高位丢1, 结果出错, 右移时低位丢1, 影响精度<br>负数的原码左移高位丢1, 结果出错, 低位丢1, 影响精度<br>负数补码左移高位丢0, 结果出错, 右移时丢1, 影响精度,<br>负数反码左移高位丢0, 结果出错, 低位丢0, 影响精度<br>无符号数的移位成为逻辑移位, 空位填0</p>
+</li>
+<li><p>加减法运算</p>
+<p>加减法采用补码运算, 减法相当于加负<br>补码的加法等于加法结果模2<sup>n+1</sup>, 得到结果的补码</p>
+<ul>
+<li>溢出验证: 可以采用一位符号位判断溢出或两位符号位判断溢出<blockquote>
+<ol>
+<li>以为符号为溢出: 当加法两数同号, 但和结果的符号位不同时发生溢出</li>
+<li>在使用两位符号位的补码时, 两位符号位要连同数值一起参加运算, 当两位符号位不变时表示溢出; 同时不论是否溢出, 高位的符号位永远表示真正的符号<br>补码定点加减法流程:</li>
+</ol>
+</blockquote>
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-08-18-04-10.png">
+</li>
+</ul>
+</li>
+<li><p>乘法运算</p>
+<p>乘法运算主要包括原码一位乘法，原码两位乘法，补码一位乘法，补码两位乘法</p>
+<ul>
+<li>原码一位乘法</li>
+</ul>
+<p>乘积的符号位有两原码符号位异或运算结果决定<br>乘积的数值部分由两数的绝对值相乘</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-10-18-56-23.png">
+
+<ul>
+<li>原码两位乘法</li>
+</ul>
+<p>原码两位乘法乘法速度更快,符号值的计算和数值部分的计算分开<br>但是原码两位乘法使用两位乘数地状态来决定新的部分积如何形成</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-10-19-18-41.png">
+
+<ul>
+<li>补码一位运算(比较法)</li>
+</ul>
+<p>考虑到溢出，部分积和被乘数取双符号位<br>补码乘法的符号位在运算中自然形成</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-10-19-37-58.png">
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-10-19-38-08.png">
+
+<ul>
+<li>补码两位运算</li>
+</ul>
+<p>部分积取三位符号位,乘数取两位符号位</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-10-19-38-49.png">
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-10-19-42-45.png">
+</li>
+<li><p>除法运算</p>
+<ul>
+<li>原码除法</li>
+</ul>
+<p>原码除法和原码乘法一样,符号位是单独处理的<br>恢复余数法:当余数为负数时,加上除数,将其恢复到原来的余数</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-12-20-23-08.png">
+<p>加减交替法:恢复余数法的进一步归纳</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-12-20-32-39.png">
+
+<ul>
+<li>补码除法</li>
+</ul>
+<p>补码除法一般采用加减交替法,符号位和数值一起参加运算<br>若除数和被除数符号相同,采用原码规则上商,否则使用反码原则</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-15-15-19-48.png">
+<p>运算步骤:<br>新余数获得方法和源码加减法相似,当余数和除数符号相同,商上1,新余数为2倍余数减除数<br>若余数的符号和除数不同,商上0,新余数为余数*2减除数</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-15-15-39-41.png">
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-15-15-49-40.png">
+
+</li>
+</ol>
+<h2 id="6-4-浮点数运算"><a href="#6-4-浮点数运算" class="headerlink" title="6.4 浮点数运算"></a>6.4 浮点数运算</h2><ol>
+<li><p>浮点数加减运算</p>
+<ul>
+<li>对阶: 使两数的小数点位置对齐</li>
+<li>尾数求和: 将对阶后的两尾数按定点加减运算规则求和(差)  </li>
+<li>规格化: 为增加有效数字的位数, 提高运算精度, 必须将求和的尾数规格化</li>
+<li>舍入: 为提高精度, 要考虑尾数右移时丢失的数值位</li>
+<li>判断结果, 即判断结果是否溢出<br>溢出判断:<img src="http://blogpics.lenmain.cn/static/images/2020-08-15-16-15-51.png">
+</li>
+</ul>
+</li>
+<li><p>浮点数乘除法运算</p>
+</li>
+</ol>
+<p>两个浮点数相乘, 其乘积的阶码为两乘数阶码之和, 乘积的尾数为相应两数的尾数之积浮点数相除与之相反</p>
+<ul>
+<li><p>阶码运算</p>
+<p>使用补码运算, 乘法补码相加, 除法补码相减  </p>
+</li>
+<li><p>尾数运算</p>
+<p>浮点数乘法：先检测两个尾数中是否有零, 有则直接将结果置零<br>尾数的相乘可以使用定点小数的任意一种乘法解决, 相乘结果可能需要左归<br>左归时如果发生阶下溢, 则作机器零处理, 如果发生阶上溢, 则作溢出处理<br>由于尾数相乘会得到两倍字长的结果, 因此采用截断或者舍入原则舍去低位<br>对于原码和补码正数, 采用0舍1入<br>对于补码负数, 当丢失的各位都是0时, 不必舍入, 当丢失的各位数中的最高位为0, 且以下各位不全为0; 或者丢失的给尾数的最高位为1, 且以下的各位均为0时, 舍去被丢失的各位;<br>当丢失的各位数中的最高位为1, 且以下的各位又不全为0时, 则在保留尾数的最末位加一修正  </p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-18-21-47-31.png">
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-18-21-47-46.png">
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-18-21-47-59.png">
+<p>浮点数除法:<br>首先检测除数和被除数是否为0, 两个浮点数尾数的相除可以采用定点小数的任意一种除法算法<br>对已规格化的尾数, 为了防止除法结果溢出, 可先比较被除数和除数的绝对值,<br>如果被除数的绝对值大于除数的绝对值, 则先将被除数右移一位, 其阶码加一, 再做尾数相除. 此时所得的结果必然是规格化的定点小数</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-18-21-59-09.png">
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-18-21-59-48.png">
+
+</li>
+</ul>
+<h2 id="6-5-算数逻辑单元"><a href="#6-5-算数逻辑单元" class="headerlink" title="6.5 算数逻辑单元"></a>6.5 算数逻辑单元</h2><ol>
+<li><p>ALU电路</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-18-22-02-22.png">
+<p>74181是能完成四位二进制代码的逻辑运算部件有两种工作方式, 正逻辑和负逻辑</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-19-13-40-39.png">
+
+
+</li>
+</ol>
+<ol start="2">
+<li><p>快速进位链</p>
+<ul>
+<li>并行加法器</li>
+</ul>
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-19-14-10-12.png">
+<p>并行加法器由若干个全加器组成,n+1个全加器级联,组成了一个n+1位并行加法器<br>一级一级传递进位,大大影响计算速度</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-19-14-29-15.png">
+
+<ul>
+<li>串行进位链</li>
+</ul>
+<p>将并行加法器中的进位信号采用串行传输,采用与非电路即可实现进位传递</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-19-14-33-24.png">
+<p>若与非门的延时为t<sub>y</sub>,那么当每位的d<sub>i</sub>和t<sub>i</sub>形成后,每增加一位,进位时间就会增加2t<sub>y</sub><br>n位全加器的最长进位时间为2nt<sub>y</sub></p>
+<ul>
+<li>并行进位链</li>
+</ul>
+<p>并行进位链是指并行加法器中的进位信号是同时产生的,又称先行进位,跳跃进位等<br>理性的并行进位链是n为全加器的n位进位同时产生,通常有单重分组和双重分组两种实现方案<br>单重分组跳跃进位:<br>单重分组跳跃进位就是将n位全加器分成若干小组,小组间的进位同时产生<br>小组与小组之间采用串行进位,即组内并行,组间串行<br>四位一组的并行进位链:<br>设与或非门的延迟时间为1.5t<sub>y</sub>,与非门的延迟时间仍为1t<sub>y</sub>,则d<sub>i</sub>和t<sub>i</sub>形成后,只需2.5t<sub>y</sub>就可以全部进位</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-19-14-50-51.png">
+<p>将16位的全加器按四位一组进行分组,便可得单重分组跳跃进位链框图:</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-19-14-57-22.png">
+<h2 id="则当n-16时-经过10ty可以完成全部进位"><a href="#则当n-16时-经过10ty可以完成全部进位" class="headerlink" title="则当n=16时,经过10ty可以完成全部进位"></a>则当n=16时,经过10t<sub>y</sub>可以完成全部进位</h2><p>双重分组跳跃进位:<br>将n为全加器分为几个大组,每个大组又包括几个小组,每个大组中包含的各个小组的最高进位同时形成,同一小组非最高位同时形成<br>小组内最高位和非最高位不是同时生成的,即小组内并并行,小组间并行,大组间串行</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-19-14-51-45.png">
+<p>n=16时进位时间为7.5t<sub>y</sub>,n=32时进位时间为10t<sub>y</sub><br>所有Di和Ti在第一个2.5t<sub>y</sub>形成</p>
+</li>
+</ol>
+<h1 id="7-指令系统"><a href="#7-指令系统" class="headerlink" title="7. 指令系统"></a>7. 指令系统</h1><h2 id="7-1-机器指令"><a href="#7-1-机器指令" class="headerlink" title="7.1 机器指令"></a>7.1 机器指令</h2><p>指令一般由操作码和地址码两部分组成</p>
+<ul>
+<li><p>操作码</p>
+<p>操作码的尾数决定了机器允许的指令条数, 长度可以是固定的, 也可以是变化的<br>采用不固定长度的操作码可以减少指令的平均长度, 但会增加译码难度<br>因此采用扩展操作码技术, 不同地址数的指令拥有不同长度的操作码<br>同时应该尽量安排指令使用频度高的指令占据更短的操作码</p>
+</li>
+<li><p>地址码: 地址码用来指出该指令源操作数的地址, 结果的地址和下一条指令的地址</p>
+</li>
+<li><p>指令字长: 现代计算机指令系统允许多字长指令, 但尽量将常用的指令设置成单字长或短字长指令</p>
+</li>
+</ul>
+<h2 id="7-2-操作数类型和操作类型"><a href="#7-2-操作数类型和操作类型" class="headerlink" title="7.2 操作数类型和操作类型"></a>7.2 操作数类型和操作类型</h2><p>机器中常见的操作数类型有地址, 数字, 字符, 逻辑数字等<br>边界对齐, 边界不对齐; 按字编址, 按字节编址</p>
+<ul>
+<li>指令的操作类型<ol>
+<li>数据传送</li>
+<li>算术逻辑操作</li>
+<li>移位</li>
+<li>转移:无条件转移,有条件转移,调用与返回,陷阱和陷阱指令</li>
+<li>输入输出</li>
+<li>其他</li>
+</ol>
+</li>
+</ul>
+<h2 id="7-3-寻址方式"><a href="#7-3-寻址方式" class="headerlink" title="7.3 寻址方式"></a>7.3 寻址方式</h2><ul>
+<li>指令寻址: 顺序寻址(PC+1)和跳跃寻址</li>
+<li>数据寻址<ol>
+<li>立即寻址:操作数本身在指令中,指令带有立即寻址特征</li>
+<li>直接寻址:指令中的地址为操作数的地址</li>
+<li>隐含寻址:操作数的地址不明显给出,适用于特殊的指令</li>
+<li>间接寻址:指令字中的形式地址不直接指出操作数的地址,而是给出操作数有效地址的存储单元地址,可以有两次间接</li>
+<li>寄存器寻址:指令中直接给出了寄存器的编号,操作数在该寄存器内</li>
+<li>寄存器间接寻址:指令中指定的寄存器存储了操作数的地址</li>
+<li>基址寻址:基址寻址需要设有基址寻址寄存器BR,其操作数的有效地址等于操作数的有效地址等于指令字中的形式地址和基址寄存器中的内容相加</li>
+<li>变址寻址:有效地址等于指令字中的形式地址与变址寄存器IX的内容之和</li>
+<li>相对寻址:有效地址时将PC中的内容与指令字中的形式地址相加</li>
+<li>堆栈寻址:零地址指令</li>
+</ol>
+</li>
+</ul>
+<h2 id="7-4-RISC技术"><a href="#7-4-RISC技术" class="headerlink" title="7.4 RISC技术"></a>7.4 RISC技术</h2><p>CISC, 复杂指令计算机<br>RISC, 精简指令计算机</p>
+<h1 id="8-CPU结构及功能"><a href="#8-CPU结构及功能" class="headerlink" title="8. CPU结构及功能"></a>8. CPU结构及功能</h1><p>cpu基本功能: 取指令, 分析指令, 执行指令</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-22-14-30-33.png">
+
+<h2 id="8-1-CPU的寄存器"><a href="#8-1-CPU的寄存器" class="headerlink" title="8.1 CPU的寄存器"></a>8.1 CPU的寄存器</h2><ol>
+<li>用户可见寄存器:通用寄存器,数据寄存器,地址寄存器,条件代码寄存器</li>
+<li>控制和状态寄存器:MAR,MDR,PC,IR</li>
+</ol>
+<h2 id="8-2-指令周期"><a href="#8-2-指令周期" class="headerlink" title="8.2 指令周期"></a>8.2 指令周期</h2><img src="http://blogpics.lenmain.cn/static/images/2020-08-22-14-43-21.png">
+<p>CPU每取出一条指令所需的全部时间叫指令周期, 不同指令的指令周期不同<br>一个完整的指令周期应包括取值, 间址, 执行, 中断四个子周期<br>取值周期: PC-&gt;MAR-&gt;MDR-&gt;IR<br>间址周期: MAR-&gt;MDR</p>
+<h2 id="8-3-指令流水"><a href="#8-3-指令流水" class="headerlink" title="8.3 指令流水"></a>8.3 指令流水</h2><p>为了提高计算机访存速度, 一般存储芯片芯片的性能, 或采用多体, cache等分级存储措施来提高存储器的处理能力</p>
+<ol>
+<li>提高器件的能力</li>
+<li>改进系统的架构,开发系统并行性</li>
+</ol>
+<p>指令的处理过程分解:</p>
+<ol>
+<li>取指(FI)</li>
+<li>指令译码(DI)</li>
+<li>计算操作数地址(CO)</li>
+<li>取操作数(FO)</li>
+<li>执行指令(EI)</li>
+<li>写操作数(WO)</li>
+</ol>
+<h2 id="8-4-中断系统"><a href="#8-4-中断系统" class="headerlink" title="8.4 中断系统"></a>8.4 中断系统</h2><p>中断因素: 人为设置, 程序性事故, 硬件故障, IO设备, 外部事件</p>
+<img src="http://blogpics.lenmain.cn/static/images/2020-08-22-16-07-57.png">
+
+<ul>
+<li><p>中断服务程序入口地址的寻找</p>
+<ol>
+<li>硬件向量法:使用无条件转移或者向量地址表</li>
+<li>软件查询法</li>
+</ol>
+</li>
+<li><p>多重中断</p>
+<p>当CPU在执行某个中断服务程序时, CPU响应了另一个中断源产生的新的中断请求<br>实现多重中断:<br>提前设置开中断指令<br>优先级别高的中断源有权中断级别低的</p>
+</li>
+</ul>
+<h1 id="9-控制单元的功能"><a href="#9-控制单元的功能" class="headerlink" title="9. 控制单元的功能"></a>9. 控制单元的功能</h1><p>控制单元具有发出各种微操作命令序列的功能</p><div id="paginator"></div></div><div id="post-footer"><hr><a href="/2020/09/25/%E7%AC%94%E8%AE%B0%E6%A8%A1%E6%9D%BF/">笔记模板 Next →</a><hr></div><div id="bottom-btn"><a id="to-index" href="#post-index" title="index">≡</a><a id="to-top" href="#post-title" title="to top">∧</a></div><details id="reward"><summary>打赏</summary><div id="alipay"><span>支付宝 | Alipay</span><br><img src="/img/Alipay.png"></div><div id="wechat"><span>微信 | WeChat</span><br><img src="/img/WeChat.png"></div></details><div id="Valine"></div><script>new Valine({
+ el: '#Valine'
+ , appId: ''
+ , appKey: ''
+ , placeholder: '此条评论委托企鹅物流发送'
+})</script></div></article><aside><div id="about"><a href="/" id="logo"><img src="https://ak.hypergryph.com/assets/index/images/ak/pc/faction/1.png" alt="Logo"></a><h1 id="Dr"><a href="/"> Dr.lenmain</a></h1><section id="total"><a id="total-archives" href="/archives"><span class="total-title">Archives Total:</span><span class="total-number">6</span></a><div id="total-tags"><span class="total-title">Tags:</span><span class="total-number">0</span></div><div id="total-categories"><span class="total-title">Categories:</span><span class="total-number">0</span></div></section></div><div id="aside-block"><h1>INDEX</h1><div id="post-index"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BB%84%E6%88%90%E5%8E%9F%E7%90%86"><span class="toc-number">1.</span> <span class="toc-text">计算机组成原理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%B3%BB%E7%BB%9F%E7%AE%80%E4%BB%8B"><span class="toc-number">1.1.</span> <span class="toc-text">1.1 计算机系统简介</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-2-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%9F%BA%E6%9C%AC%E7%BB%84%E6%88%90"><span class="toc-number">1.2.</span> <span class="toc-text">1.2 计算机的基本组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-3-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%A1%AC%E4%BB%B6%E6%8A%80%E6%9C%AF%E6%8C%87%E6%A0%87"><span class="toc-number">1.3.</span> <span class="toc-text">1.3 计算机硬件技术指标</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%8F%91%E5%B1%95%E5%92%8C%E5%BA%94%E7%94%A8"><span class="toc-number">2.</span> <span class="toc-text">2. 计算机的发展和应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-%E8%AE%A1%E7%AE%97%E6%9C%BA%E5%8F%91%E5%B1%95%E5%8F%B2"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 计算机发展史</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E5%BA%94%E7%94%A8"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 计算机的应用</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-%E7%B3%BB%E7%BB%9F%E6%80%BB%E7%BA%BF"><span class="toc-number">3.</span> <span class="toc-text">3. 系统总线</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%E6%80%BB%E7%BA%BF%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">3.1.</span> <span class="toc-text">3.1 总线的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-%E6%80%BB%E7%BA%BF%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">3.2.</span> <span class="toc-text">3.2 总线的分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%E6%80%BB%E7%BA%BF%E7%9A%84%E7%89%B9%E6%80%A7%E4%BB%A5%E5%8F%8A%E6%8C%87%E6%A0%87"><span class="toc-number">3.3.</span> <span class="toc-text">3.3 总线的特性以及指标</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%E6%80%BB%E7%BA%BF%E7%BB%93%E6%9E%84"><span class="toc-number">3.4.</span> <span class="toc-text">3.4 总线结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-%E6%80%BB%E7%BA%BF%E6%8E%A7%E5%88%B6"><span class="toc-number">3.5.</span> <span class="toc-text">3.5 总线控制</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-%E5%AD%98%E5%82%A8%E5%99%A8"><span class="toc-number">4.</span> <span class="toc-text">4. 存储器</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#4-1-%E5%AD%98%E5%82%A8%E5%99%A8%E5%88%86%E7%B1%BB"><span class="toc-number">4.1.</span> <span class="toc-text">4.1 存储器分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-2-%E4%B8%BB%E5%AD%98%E5%82%A8%E5%99%A8"><span class="toc-number">4.2.</span> <span class="toc-text">4.2 主存储器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-3-%E9%9A%8F%E6%9C%BA%E5%AD%98%E5%8F%96%E5%AF%84%E5%AD%98%E5%99%A8%E8%AF%BB%E5%86%99-RAM"><span class="toc-number">4.3.</span> <span class="toc-text">4.3 随机存取寄存器读写(RAM)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-4-%E5%8F%AA%E8%AF%BB%E5%AD%98%E5%82%A8%E5%99%A8-ROM"><span class="toc-number">4.4.</span> <span class="toc-text">4.4 只读存储器(ROM)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-5-%E5%AD%98%E5%82%A8%E5%99%A8%E5%92%8CCPU%E7%9A%84%E8%BF%9E%E6%8E%A5"><span class="toc-number">4.5.</span> <span class="toc-text">4.5 存储器和CPU的连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-6-%E8%BE%85%E5%8A%A9%E5%AD%98%E5%82%A8%E5%99%A8"><span class="toc-number">4.6.</span> <span class="toc-text">4.6 辅助存储器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA%E7%B3%BB%E7%BB%9F"><span class="toc-number">5.</span> <span class="toc-text">5. 输入输出系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-IO%E7%B3%BB%E7%BB%9F%E7%9A%84%E7%BB%84%E6%88%90"><span class="toc-number">5.1.</span> <span class="toc-text">5.1 IO系统的组成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-3-IO%E8%AE%BE%E5%A4%87%E5%92%8C%E4%B8%BB%E6%9C%BA%E7%9A%84%E8%81%94%E7%B3%BB%E6%96%B9%E5%BC%8F"><span class="toc-number">5.2.</span> <span class="toc-text">5.3 IO设备和主机的联系方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-4-IO%E4%B8%8E%E4%B8%BB%E6%9C%BA%E4%BF%A1%E6%81%AF%E4%BC%A0%E9%80%81%E7%9A%84%E6%8E%A7%E5%88%B6%E6%96%B9%E5%BC%8F"><span class="toc-number">5.3.</span> <span class="toc-text">5.4 IO与主机信息传送的控制方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-5-%E5%A4%96%E9%83%A8%E8%AE%BE%E5%A4%87"><span class="toc-number">5.4.</span> <span class="toc-text">5.5 外部设备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-6-IO%E6%8E%A5%E5%8F%A3"><span class="toc-number">5.5.</span> <span class="toc-text">5.6 IO接口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-7-%E7%A8%8B%E5%BA%8F%E6%9F%A5%E8%AF%A2%E6%96%B9%E5%BC%8F"><span class="toc-number">5.6.</span> <span class="toc-text">5.7 程序查询方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-8-%E4%B8%AD%E6%96%AD%E6%96%B9%E5%BC%8F"><span class="toc-number">5.7.</span> <span class="toc-text">5.8 中断方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-9-DMA%E6%96%B9%E5%BC%8F"><span class="toc-number">5.8.</span> <span class="toc-text">5.9 DMA方式</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%9A%84%E8%BF%90%E7%AE%97%E6%96%B9%E5%BC%8F"><span class="toc-number">6.</span> <span class="toc-text">6. 计算机的运算方式</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#6-1-%E7%A7%BB%E7%A0%81%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="toc-number">6.1.</span> <span class="toc-text">6.1 移码表示法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-2-%E6%95%B0%E7%9A%84%E5%AE%9A%E7%82%B9%E8%A1%A8%E7%A4%BA%E5%92%8C%E6%B5%AE%E7%82%B9%E8%A1%A8%E7%A4%BA"><span class="toc-number">6.2.</span> <span class="toc-text">6.2 数的定点表示和浮点表示</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-3-%E5%AE%9A%E7%82%B9%E8%BF%90%E7%AE%97"><span class="toc-number">6.3.</span> <span class="toc-text">6.3 定点运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-4-%E6%B5%AE%E7%82%B9%E6%95%B0%E8%BF%90%E7%AE%97"><span class="toc-number">6.4.</span> <span class="toc-text">6.4 浮点数运算</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-5-%E7%AE%97%E6%95%B0%E9%80%BB%E8%BE%91%E5%8D%95%E5%85%83"><span class="toc-number">6.5.</span> <span class="toc-text">6.5 算数逻辑单元</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%99%E5%BD%93n-16%E6%97%B6-%E7%BB%8F%E8%BF%8710ty%E5%8F%AF%E4%BB%A5%E5%AE%8C%E6%88%90%E5%85%A8%E9%83%A8%E8%BF%9B%E4%BD%8D"><span class="toc-number">6.6.</span> <span class="toc-text">则当n&#x3D;16时,经过10ty可以完成全部进位</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7-%E6%8C%87%E4%BB%A4%E7%B3%BB%E7%BB%9F"><span class="toc-number">7.</span> <span class="toc-text">7. 指令系统</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#7-1-%E6%9C%BA%E5%99%A8%E6%8C%87%E4%BB%A4"><span class="toc-number">7.1.</span> <span class="toc-text">7.1 机器指令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-2-%E6%93%8D%E4%BD%9C%E6%95%B0%E7%B1%BB%E5%9E%8B%E5%92%8C%E6%93%8D%E4%BD%9C%E7%B1%BB%E5%9E%8B"><span class="toc-number">7.2.</span> <span class="toc-text">7.2 操作数类型和操作类型</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-3-%E5%AF%BB%E5%9D%80%E6%96%B9%E5%BC%8F"><span class="toc-number">7.3.</span> <span class="toc-text">7.3 寻址方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-4-RISC%E6%8A%80%E6%9C%AF"><span class="toc-number">7.4.</span> <span class="toc-text">7.4 RISC技术</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#8-CPU%E7%BB%93%E6%9E%84%E5%8F%8A%E5%8A%9F%E8%83%BD"><span class="toc-number">8.</span> <span class="toc-text">8. CPU结构及功能</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#8-1-CPU%E7%9A%84%E5%AF%84%E5%AD%98%E5%99%A8"><span class="toc-number">8.1.</span> <span class="toc-text">8.1 CPU的寄存器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-2-%E6%8C%87%E4%BB%A4%E5%91%A8%E6%9C%9F"><span class="toc-number">8.2.</span> <span class="toc-text">8.2 指令周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-3-%E6%8C%87%E4%BB%A4%E6%B5%81%E6%B0%B4"><span class="toc-number">8.3.</span> <span class="toc-text">8.3 指令流水</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-4-%E4%B8%AD%E6%96%AD%E7%B3%BB%E7%BB%9F"><span class="toc-number">8.4.</span> <span class="toc-text">8.4 中断系统</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#9-%E6%8E%A7%E5%88%B6%E5%8D%95%E5%85%83%E7%9A%84%E5%8A%9F%E8%83%BD"><span class="toc-number">9.</span> <span class="toc-text">9. 控制单元的功能</span></a></li></ol></div></div><footer><nobr><span class="text-title">©</span><span class="text-content">1970 to 2020</span></nobr><wbr><nobr><span class="text-title">ICP</span><span class="text-content">——备案号——</span></nobr><wbr><wbr><nobr>published with&nbsp;<a target="_blank" rel="noopener" href="http://hexo.io">Hexo&nbsp;</a></nobr><wbr><nobr>Theme&nbsp;<a target="_blank" rel="noopener" href="https://github.com/Yue-plus/hexo-theme-arknights">Arknight&nbsp;</a></nobr><wbr><nobr>by&nbsp;<a target="_blank" rel="noopener" href="https://github.com/Yue-plus">Yue_plus</a></nobr></footer></aside></main><canvas id="canvas-dust"></canvas><script src="/js/arknights.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/highlight.js/10.1.2/highlight.min.js"></script></body></html>
