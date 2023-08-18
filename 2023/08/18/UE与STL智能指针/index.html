@@ -1,0 +1,189 @@
+<!DOCTYPE html><html lang="zh-cn" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Hexo | Hexo</title><meta name="author" content="lenmain"><meta name="copyright" content="lenmain"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta http-equiv="Cache-Control" content="no-transform"><meta http-equiv="Cache-Control" content="no-siteapp"><meta name="description" content="UE与STL智能指针 参考链接：C++ STL 四种智能指针浅析UE5中的智能指针源码(上)浅析UE5中的智能指针源码(下)  1. STL智能指针 C++ 标准模板库 STL一共给我们提供了四种智能指针：auto_ptr、unique_ptr、shared_ptr 和 weak_ptr，其中 auto_ptr 是 C++98 提出的，C++11 已将其摒弃，并提出了 unique_ptr 替代">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://vercel-hexo-ten.vercel.app/2023/08/18/UE%E4%B8%8ESTL%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="UE与STL智能指针 参考链接：C++ STL 四种智能指针浅析UE5中的智能指针源码(上)浅析UE5中的智能指针源码(下)  1. STL智能指针 C++ 标准模板库 STL一共给我们提供了四种智能指针：auto_ptr、unique_ptr、shared_ptr 和 weak_ptr，其中 auto_ptr 是 C++98 提出的，C++11 已将其摒弃，并提出了 unique_ptr 替代">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg">
+<meta property="article:published_time" content="2023-08-18T14:59:40.054Z">
+<meta property="article:modified_time" content="2023-08-18T14:17:25.475Z">
+<meta property="article:author" content="lenmain">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://vercel-hexo-ten.vercel.app/2023/08/18/UE%E4%B8%8ESTL%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css"><script>var GLOBAL_CONFIG = { 
+  root: '/',
+  hexoversion: '5.2.0',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  ClickShowText: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  justifiedGallery: {
+    js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+    css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+};
+
+var saveToLocal = {
+  set: function setWithExpiry(key, value, ttl) {
+    const now = new Date()
+    const expiryDay = ttl * 86400000
+    const item = {
+      value: value,
+      expiry: now.getTime() + expiryDay,
+    }
+    localStorage.setItem(key, JSON.stringify(item))
+  },
+
+  get: function getWithExpiry(key) {
+    const itemStr = localStorage.getItem(key)
+
+    if (!itemStr) {
+      return undefined
+    }
+    const item = JSON.parse(itemStr)
+    const now = new Date()
+
+    if (now.getTime() > item.expiry) {
+      localStorage.removeItem(key)
+      return undefined
+    }
+    return item.value
+  }
+}</script><script id="config_change">var GLOBAL_CONFIG_SITE = { 
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isSidebar: true,
+  postUpdate: '2023-08-18 22:17:25'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(function () {
+  window.activateDarkMode = function () {
+    document.documentElement.setAttribute('data-theme', 'dark')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+    }
+  }
+  window.activateLightMode = function () {
+    document.documentElement.setAttribute('data-theme', 'light')
+    if (document.querySelector('meta[name="theme-color"]') !== null) {
+      document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+    }
+  }
+
+  const autoChangeMode = 'false'
+  const t = saveToLocal.get('theme')
+  if (autoChangeMode === '1') {
+    const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+    const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+    const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+    const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+    if (t === undefined) {
+      if (isLightMode) activateLightMode()
+      else if (isDarkMode) activateDarkMode()
+      else if (isNotSpecified || hasNoSupport) {
+        const now = new Date()
+        const hour = now.getHours()
+        const isNight = hour <= 6 || hour >= 18
+        isNight ? activateDarkMode() : activateLightMode()
+      }
+      window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+        if (saveToLocal.get('theme') === undefined) {
+          e.matches ? activateDarkMode() : activateLightMode()
+        }
+      })
+    } else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else if (autoChangeMode === '2') {
+    const now = new Date()
+    const hour = now.getHours()
+    const isNight = hour <= 6 || hour >= 18
+    if (t === undefined) isNight ? activateDarkMode() : activateLightMode()
+    else if (t === 'light') activateLightMode()
+    else activateDarkMode()
+  } else {
+    if (t === 'dark') activateDarkMode()
+    else if (t === 'light') activateLightMode()
+  }
+})()</script><meta name="generator" content="Hexo 5.2.0"></head><body><div id="mobile-sidebar"><div id="menu_mask"></div><div id="mobile-sidebar-menus"><div class="mobile_author_icon"><img class="avatar-img" src="/null" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="mobile_post_data"><div class="mobile_data_item is-center"><div class="mobile_data_link"><a href="/archives/"><div class="headline">Articles</div><div class="length_num">8</div></a></div></div></div><hr/></div></div><div id="body-wrap"><div id="sidebar"><i class="fas fa-arrow-right on" id="toggle-sidebar"></i><div class="sidebar-toc"><div class="sidebar-toc__title">Catalog</div><div class="sidebar-toc__progress"><span class="progress-notice">You've read</span><span class="progress-num">0</span><span class="progress-percentage">%</span><div class="sidebar-toc__progress-bar">     </div></div><div class="sidebar-toc__content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#UE%E4%B8%8ESTL%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88"><span class="toc-number">1.</span> <span class="toc-text">UE与STL智能指针</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-STL%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88"><span class="toc-number">1.1.</span> <span class="toc-text">1. STL智能指针</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-1-unique-ptr"><span class="toc-number">1.1.1.</span> <span class="toc-text">1.1 unique_ptr</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-2-shared-ptr"><span class="toc-number">1.1.2.</span> <span class="toc-text">1.2 shared_ptr</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-3-weak-ptr"><span class="toc-number">1.1.3.</span> <span class="toc-text">1.3 weak_ptr</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-UE5%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88"><span class="toc-number">1.2.</span> <span class="toc-text">2. UE5智能指针</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-1-TSharedRef"><span class="toc-number">1.2.1.</span> <span class="toc-text">2.1 TSharedRef</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-2-TUniquePtr"><span class="toc-number">1.2.2.</span> <span class="toc-text">2.2 TUniquePtr</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-3-TWeakPtr-amp-TWeakObjectPtr"><span class="toc-number">1.2.3.</span> <span class="toc-text">2.3 TWeakPtr&amp;TWeakObjectPtr</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-4-TSharedPtr"><span class="toc-number">1.2.4.</span> <span class="toc-text">2.4 TSharedPtr</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-5-TSharedFromThis"><span class="toc-number">1.2.5.</span> <span class="toc-text">2.5 TSharedFromThis</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%BB%93%E8%AF%AD"><span class="toc-number">1.3.</span> <span class="toc-text">3. 结语</span></a></li></ol></li></ol></div></div></div><header class="post-bg" id="page-header" style="background-image: url(https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg)"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Hexo</a></span><span id="menus"><span class="close" id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></span></span></nav><div id="post-info"><div id="post-title"><div class="posttitle">No title</div></div><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">Created</span><time class="post-meta-date-created" datetime="2023-08-18T14:59:40.054Z" title="Created 2023-08-18 22:59:40">2023-08-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">Updated</span><time class="post-meta-date-updated" datetime="2023-08-18T14:17:25.475Z" title="Updated 2023-08-18 22:17:25">2023-08-18</time></span></div><div class="meta-secondline"> <span class="post-meta-separator">|</span><span class="post-meta-pv-cv"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">Post View:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout_post" id="content-inner"><article id="post"><div class="post-content" id="article-container"><h1 id="UE与STL智能指针"><a href="#UE与STL智能指针" class="headerlink" title="UE与STL智能指针"></a>UE与STL智能指针</h1><blockquote>
+<p>参考链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/danshiming/article/details/113790216?ydreferer=aHR0cHM6Ly9wYXNzcG9ydC5jc2RuLm5ldC9sb2dpbj9jb2RlPWFwcGxldHM=">C++ STL 四种智能指针</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/580469704">浅析UE5中的智能指针源码(上)</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/581169238">浅析UE5中的智能指针源码(下)</a></p>
+</blockquote>
+<h2 id="1-STL智能指针"><a href="#1-STL智能指针" class="headerlink" title="1. STL智能指针"></a>1. STL智能指针</h2><blockquote>
+<p>C++ 标准模板库 STL一共给我们提供了四种智能指针：auto_ptr、unique_ptr、shared_ptr 和 weak_ptr，其中 auto_ptr 是 C++98 提出的，C++11 已将其摒弃，并提出了 unique_ptr 替代 auto_ptr。shared_ptr 和 weak_ptr 则是 C+11 从准标准库 Boost 中引入的两种智能指针，其中shared_ptr作为标准的共享所有权得智能指针最为常用。STL智能指针一般可以有效防止内存泄漏,但不是线程安全的  </p>
+</blockquote>
+<h3 id="1-1-unique-ptr"><a href="#1-1-unique-ptr" class="headerlink" title="1.1 unique_ptr"></a>1.1 unique_ptr</h3><p>unique_ptr 是 C++11 新增的智能指针，它是一种独占式智能指针，它禁止其他智能指针与其共享同一对象，从而保证代码的安全性,如果出现了共享所有权的情况可能会编译出错。unique_ptr定义在头文件<memory>中,无法复制到其他的unique_ptr,无法通过值传递给函数,也无法用于需要副本得STL算法，但是可以通过std::move转移所有权。unique_ptr可以改变指向的对象,也可以动态释放或者转移所有权.其主要的操作如下:  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 创建unique_ptr</span><br><span class="hljs-built_in">unique_ptr</span>&lt;T&gt; u1; <span class="hljs-comment">//创建空的unique_ptr</span><br>u1.reset(<span class="hljs-keyword">new</span> T()); <span class="hljs-comment">//动态绑定对象</span><br><span class="hljs-function"><span class="hljs-built_in">unique_ptr</span>&lt;T&gt; <span class="hljs-title">u2</span><span class="hljs-params">(<span class="hljs-keyword">new</span> T())</span></span>; <span class="hljs-comment">//创建指向类型为T的对象的unique_ptr</span><br>unique_ptr&lt;T,D&gt; u(d); //创建空 unique_ptr，执行类型为 T 的对象，用类型为 D 的对象 d 来替代默认的删除器<br><span class="hljs-keyword">auto</span> u = make_unique&lt;T&gt;(); <span class="hljs-comment">//使用辅助函数创建</span><br><br><span class="hljs-comment">// 所有权得释放和转移</span><br>T* p = u1.release(); <span class="hljs-comment">//释放u1对资源的所有权,返回指针</span><br><span class="hljs-built_in">unique_ptr</span>&lt;T&gt; u2;<br>u2 = <span class="hljs-built_in">std</span>::move(u1); <span class="hljs-comment">// 通过移动语义转移所有权,此时u1为空</span><br>u2.reset(u1.release()); <span class="hljs-comment">//将u1对资源的所有权转移给u2</span><br>u1.reset(); <span class="hljs-comment">//手动释放u1指向的资源</span><br>u1=<span class="hljs-literal">nullptr</span>; <span class="hljs-comment">//与上一条等价</span><br><br></code></pre></td></tr></table></figure>
+
+<h3 id="1-2-shared-ptr"><a href="#1-2-shared-ptr" class="headerlink" title="1.2 shared_ptr"></a>1.2 shared_ptr</h3><p>shared_ptr是一个标准的共享智能指针,同样定义在<memory>头文件中,通过引用计数的方式来管理资源,当引用计数为0时,自动释放资源,可以自定义释放的规则.shared_ptr的引用计数主要通过专门的控制块实现,其中包含应用计数和weak_ptr使用的weak count.除此之外还有指向资源的指针,自定义的deleter,allocator等.通过make_shared函数创建,以及通过原始指针和unique_ptr创建的shared_ptr会直接创建新的控制块,而通过拷贝或者直接赋值则不会产生新的控制块.<br><img src="./pic/shared_ptr%E6%8E%A7%E5%88%B6%E5%9D%97.png" alt="shared_ptr指针以及控制块"></p>
+<p>shared_ptr主要的操作如下:  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 创建shared_ptr</span><br><span class="hljs-built_in">shared_ptr</span>&lt;T&gt; sp; <span class="hljs-comment">//创建空的shared_ptr</span><br><span class="hljs-function"><span class="hljs-built_in">shared_ptr</span>&lt;T&gt; <span class="hljs-title">sp</span><span class="hljs-params">(p)</span></span>; <span class="hljs-comment">//创建shared_ptr,指向指针p所指向的对象</span><br><span class="hljs-function"><span class="hljs-built_in">unique_ptr</span>&lt;T&gt; <span class="hljs-title">u</span><span class="hljs-params">(<span class="hljs-keyword">new</span> T())</span></span>;<br><span class="hljs-function"><span class="hljs-built_in">shared_ptr</span>&lt;T&gt; <span class="hljs-title">sp</span><span class="hljs-params">(u)</span></span>; <span class="hljs-comment">//创建shared_ptr,指向unique_ptr u所指向的对象</span><br><span class="hljs-function"><span class="hljs-built_in">shared_ptr</span>&lt;T&gt; <span class="hljs-title">sp2</span><span class="hljs-params">(sp)</span></span>; <span class="hljs-comment">//创建shared_ptr sp2,指向shared_ptr sp所指向的对象,会使引用计数+1</span><br><span class="hljs-built_in">shared_ptr</span> sp = <span class="hljs-built_in">std</span>::make_shared&lt;T&gt;(); <span class="hljs-comment">//推荐的创建方式,可以避免显式的new操作,避免内存泄漏</span><br><span class="hljs-built_in">shared_ptr</span> sp = <span class="hljs-built_in">std</span>::shared_from_this(); <span class="hljs-comment">//在类内使用,创建一个this的shared_ptr,需要类T本身public继承enable_shared_from_this&lt;T&gt;</span><br><br><span class="hljs-comment">// 所有权的释放和转移</span><br><span class="hljs-function"><span class="hljs-built_in">shared_ptr</span>&lt;T&gt; <span class="hljs-title">sp1</span><span class="hljs-params">(<span class="hljs-keyword">new</span> T())</span></span>;<br><span class="hljs-function"><span class="hljs-built_in">shared_ptr</span>&lt;T&gt; <span class="hljs-title">sp2</span><span class="hljs-params">(<span class="hljs-keyword">new</span> T())</span></span>;<br>sp2 = sp1;<span class="hljs-comment">// sp1引用计数+1,sp2指向的对象被释放,shared_ptr赋值只能赋值给相同类型的shared_ptr对象</span><br>sp1.reset(); <span class="hljs-comment">//手动释放sp1指向的资源</span><br>sp1.reset(<span class="hljs-keyword">new</span> T()); <span class="hljs-comment">//原有的资源被释放</span><br><br><span class="hljs-comment">// 使用基类的shared_ptr可以引用派生类</span><br><span class="hljs-function"><span class="hljs-built_in">shared_ptr</span>&lt;base&gt; <span class="hljs-title">spbase</span><span class="hljs-params">(<span class="hljs-keyword">new</span> derived())</span></span>;<br><span class="hljs-function"><span class="hljs-built_in">shared_ptr</span>&lt;derived&gt; <span class="hljs-title">spderived</span><span class="hljs-params">(<span class="hljs-keyword">new</span> derived())</span></span>;<br><span class="hljs-function"><span class="hljs-built_in">shared_ptr</span>&lt;base&gt; <span class="hljs-title">spbase2</span><span class="hljs-params">(dynamic_pointer_cast&lt;base&gt;(spderived))</span></span>; <span class="hljs-comment">//spbase2引用计数+1,spderived引用计数不变</span><br><br><span class="hljs-comment">// 不同的shared_ptr不能通过引用同一块资源创建,会导致两个指针的引用计数块不共享</span><br>T* p = <span class="hljs-keyword">new</span> T();<br><span class="hljs-function"><span class="hljs-built_in">shared_ptr</span>&lt;T&gt; <span class="hljs-title">sp1</span><span class="hljs-params">(p)</span></span>;<br><span class="hljs-function"><span class="hljs-built_in">shared_ptr</span>&lt;T&gt; <span class="hljs-title">sp2</span><span class="hljs-params">(p)</span></span>; <span class="hljs-comment">//错误,不能通过引用同一块资源创建</span><br><br></code></pre></td></tr></table></figure>
+
+<h3 id="1-3-weak-ptr"><a href="#1-3-weak-ptr" class="headerlink" title="1.3 weak_ptr"></a>1.3 weak_ptr</h3><blockquote>
+<p>shared_ptr的循环引用问题:虽然shared_ptr通过引用计数能够有效共享资源以及防止内存泄漏,但是还是存在循环引用的问题  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">A</span></span><br><span class="hljs-class">&#123;</span><br><br>  <span class="hljs-keyword">int</span> dataA_;<br>  <span class="hljs-built_in">std</span>::share&lt;B&gt; ptrb_;<br>&#125;;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">B</span></span><br><span class="hljs-class">&#123;</span><br>  <span class="hljs-keyword">int</span> dataB_<br>  <span class="hljs-built_in">std</span>::share&lt;A&gt; ptra_;<br>&#125;;<br><br><span class="hljs-keyword">int</span> main&#123;<br>    <span class="hljs-built_in">std</span>::share_ptr&lt;A&gt; ptra=<span class="hljs-built_in">std</span>::make_share&lt;A&gt;();<br>    <span class="hljs-built_in">std</span>::share_ptr&lt;B&gt; ptrb=<span class="hljs-built_in">std</span>::make_share&lt;B&gt;();<br><br>    ptra-&gt;ptrb_ =ptrb;<br>    ptrb-&gt;ptra_ =ptra;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>在退出main函数时,两个对象的引用计数都不为0,因此两个对象都不会被释放,导致内存泄漏,这就是shared_ptr循环引用的问题.这里类成员变量的shared_ptr如果换成weak_ptr,则不会出现这个问题.  </p>
+</blockquote>
+<p>weak_ptr是一种弱引用的智能指针,可以解决shared_ptr的循环引用问题.它可以指向shared_ptr所指向的对象,但是不会增加引用计数,当shared_ptr的引用计数为0时,即使weak_ptr还指向该对象,该对象也会被释放.weak_ptr不具有普通指针的行为,没有重载operator*和operator-&gt;,因此只能观测资源的使用情况.weak_ptr同样采用引用计数的方式,</p>
+<p>weak_ptr的主要的操作如下:  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs cpp">weak_ptr&lt;T&gt;w; <span class="hljs-comment">//创建空的weak_ptr</span><br><span class="hljs-function">weak_ptr&lt;T&gt; <span class="hljs-title">w</span><span class="hljs-params">(sp)</span></span>; <span class="hljs-comment">//创建weak_ptr,指向shared_ptr sp所指向的对象</span><br>w=p; <span class="hljs-comment">//将weak_ptr w指向shared_ptr p所指向的对象,p也可以是weak_ptr</span><br>w.reset(); <span class="hljs-comment">//将w置空</span><br>w.use_count(); <span class="hljs-comment">//返回w所指向对象的shared_ptr引用计数</span><br>w.expired(); <span class="hljs-comment">//返回w所指向对象的shared_ptr引用计数是否为0</span><br>w.lock(); <span class="hljs-comment">//返回一个shared_ptr,指向w所指向的对象,如果w所指向的对象已经被释放,则返回空的shared_ptr</span><br><br></code></pre></td></tr></table></figure>
+
+<h2 id="2-UE5智能指针"><a href="#2-UE5智能指针" class="headerlink" title="2. UE5智能指针"></a>2. UE5智能指针</h2><p><img src="./pic/UE5%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88%E7%B1%BB%E5%9B%BE.jpg" alt="UE5智能指针类图"><br>UE引擎在STL智能指针的基础上,重新搞了一套智能指针,其与STL智能指针的对标关系为:TSharedPtr对应shared_ptr,TWeakPtr对应weak_ptr,TUniquePtr对应unique_ptr,TSharedFromThis对应enable_shared_from_this.除此之外,UE5还提供了独有的TSharedRef.在UE中智能指针只能用于C++,不能共享到蓝图中.除了这些指针,针对资源加载的控制,UE5还提供了FSoftObjectPtr,FSoftClassPtr,FSoftClassPath,FSoftObjectPath等引用.针对UObject类别系统,UE提供了FObjectPtr/TObjectPtr,一般在使用需要进行访问追踪的UPROPERTY的成员变量时使用,而函数参数或者局部参数直接使用UObject*裸指针即可.</p>
+<ul>
+<li>STL的智能指针无法做到全平台可用,因此UE5提供了自己的智能指针;</li>
+<li>UE的智能指针可以兼容UE提供的容器,同时也可以切换成线程安全模式;</li>
+<li>UE智能指针拥有更好的性能,占用跟小的空间,同时也更容易调试;</li>
+<li>UE智能指针目前没有自定义删除函数,也无法支持动态分配的数组,共享的指针不能和uobject一起使用;</li>
+<li>应该尽量少将弱指针转化为共享指针或者共享引用的操作,会对性能有较大的影响.  </li>
+</ul>
+<h3 id="2-1-TSharedRef"><a href="#2-1-TSharedRef" class="headerlink" title="2.1 TSharedRef"></a>2.1 TSharedRef</h3><p>共享应用是一类不可为空的智能指针,一般用于Uobject系统之外的数据对象,因此无法重置或者向其指定空对象,或者创建空白引用.在与TSharedPtr之间进行选择时,除非需要空白应用或者指向空对象,否则都应该优先使用TSharedRef.同时,共享指针也无法主动减少引用数,只能通过生命周期终结或者指向其他共享引用减少引用数.其基础使用如下:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 创建共享引用</span><br>TSharedRef&lt;FMyObjectType&gt; ref = MakeShared(<span class="hljs-keyword">new</span> T());<br>TSharedRef&lt; float, Mode &gt; FloatRef( new float( 123.0f ));<br>TSharedRef&lt;FMyObjectType&gt; ref2 = ref; <span class="hljs-comment">//引用计数+1</span><br>TSharedRef&lt;FMyObjectType&gt; ref3 = MoveTemp(ref); <span class="hljs-comment">//ref3指向ref所指向的对象,ref置空</span><br><br><span class="hljs-comment">//以下两者均不会编译：</span><br>TSharedRef&lt;FMyObjectType&gt; UnassignedReference;<br>TSharedRef&lt;FMyObjectType&gt; NullAssignedReference = <span class="hljs-literal">nullptr</span>;<br><br><span class="hljs-comment">// 共享指针和共享引用的互相转换,共享指针转换成共享引用之前需要判断非空</span><br>TSharedPtr&lt;FMyObjectType&gt; MySharedPointer = MySharedReference;<br>TSharedRef&lt;FMyObjectType&gt;MySharedReference = MySharedPointer.ToSharedRef();<br><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span>&amp; MyFloat = *FloatRef;         <span class="hljs-comment">//可以直接通过解引用获取到里面的值</span><br><span class="hljs-keyword">const</span> <span class="hljs-keyword">float</span>&amp; MyFloat2 = FloatRef.Get();   <span class="hljs-comment">//也可以用Get()</span><br>TWeakPtr&lt; <span class="hljs-keyword">float</span>, Mode &gt; WeakFloat = FloatRef;<br></code></pre></td></tr></table></figure>
+
+<h3 id="2-2-TUniquePtr"><a href="#2-2-TUniquePtr" class="headerlink" title="2.2 TUniquePtr"></a>2.2 TUniquePtr</h3><p>唯一指针,不能将其赋值给不能为共享引用或者共享指针指向的对象创建唯一指针.TUniquePtr的基本使用如下:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 唯一指针的创建</span><br>TUniquePtr&lt;MyObject&gt; ObjUniquePtr = MakeUnique&lt;MyObject&gt;();<br><span class="hljs-function">TUniquePtr&lt;MyObject&gt; <span class="hljs-title">ObjUniquePtr2</span><span class="hljs-params">(<span class="hljs-keyword">new</span> MyObject())</span></span>;<br><br>ObjUniquePtr.IsValid(); <span class="hljs-comment">//判断是否为空</span><br>ObjUniquePtr.Get(); <span class="hljs-comment">//获取裸指针</span><br>ObjUniquePtr.Reset(); <span class="hljs-comment">//重置</span><br>ObjUniquePtr.Release(); <span class="hljs-comment">//释放所有权</span><br><span class="hljs-function">TUniquePtr&lt;SimpleObject&gt; <span class="hljs-title">ObjUniquePtr2</span><span class="hljs-params">(ObjUniquePtr.Release())</span></span>; <span class="hljs-comment">//移交所有权</span><br>ObjUniquePtr.Reset(<span class="hljs-keyword">new</span> SimpleObject()); <span class="hljs-comment">//动态绑定新对象</span><br>ObjUniquePtr.ExeFun();<span class="hljs-comment">//解引用</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="2-3-TWeakPtr-amp-TWeakObjectPtr"><a href="#2-3-TWeakPtr-amp-TWeakObjectPtr" class="headerlink" title="2.3 TWeakPtr&amp;TWeakObjectPtr"></a>2.3 TWeakPtr&amp;TWeakObjectPtr</h3><p>弱指针存储对资源的弱引用,同时不会阻止其引用的对象的释放.由于Uobject使用的是GC机制,而共享指针使用的是引用计数,因此对于UObject和其他类只能定义两种弱指针.TWeakptr是一种弱引用的智能指针,只能用于UObject之外的对象.TWeakObjectPtr是TWeakPtr的特化版本,用于UObject对象,弱引用可以在忽略一个对象是否有效的情况下直接使用该对象.常用方法如下:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 创建弱指针</span><br>TWeakPtr&lt;MyObject&gt; ObjWeakPtr = ObjUniquePtr;<br>TSharedRef&lt;FMyObjectType&gt; ObjectOwner = MakeShared&lt;FMyObjectType&gt;();<br><span class="hljs-function">TWeakPtr&lt;FMyObjectType&gt; <span class="hljs-title">ObjectObserver</span><span class="hljs-params">(ObjectOwner)</span></span>;<span class="hljs-comment">// 通过共享指针创建</span><br>TWeakPtr&lt;FMyObjectType&gt; ObjectObserver2 = ObjectOwner;<span class="hljs-comment">// 直接赋值</span><br><br>ObjectObserver.pin();<span class="hljs-comment">//转化为TSharedPtr</span><br>ObjectObserver.IsValid();<span class="hljs-comment">//判断是否为空</span><br>ObjectObserver.Reset();<span class="hljs-comment">//重置</span><br>ObjectObserver = <span class="hljs-literal">nullptr</span>;<span class="hljs-comment">//重置,弱指针可以直接置空</span><br><br><span class="hljs-comment">// 创建弱对象指针</span><br>TWeakObjectPtr&lt;AActor&gt; ActorWeakPtr = <span class="hljs-literal">nullptr</span>;<br>TWeakObjectPtr&lt;<span class="hljs-keyword">const</span> AActor&gt; ActorWeakPtr2 = <span class="hljs-keyword">this</span>;<span class="hljs-comment">// 模板中使用const可以防止修改对象成员</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="2-4-TSharedPtr"><a href="#2-4-TSharedPtr" class="headerlink" title="2.4 TSharedPtr"></a>2.4 TSharedPtr</h3><p>可为空指针的鲁棒共享智能指针,可以用于UObject之外的对象,也可以用于UObject对象,但是不建议这么做,因为UObject对象使用GC机制,而共享指针使用引用计数机制,两者不兼容,会导致内存泄漏.常用方法如下:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs cpp"><span class="hljs-comment">// 创建共享指针</span><br><span class="hljs-function">TSharedPtr&lt;FMyObjectType&gt; <span class="hljs-title">NewPointer</span><span class="hljs-params">(<span class="hljs-keyword">new</span> FMyObjectType())</span></span>;<br>TSharedPtr&lt;FMyObjectType, ESPMode::ThreadSafe&gt; NewThreadsafePointer = MakeShared&lt;FMyObjectType, ESPMode::ThreadSafe&gt;(MyArgs);<span class="hljs-comment">// 线程安全模式的共享指针</span><br>TSharedPtr&lt;FMyObjectType&gt; AnotherPointer = ExistingSharedPointer;<span class="hljs-comment">//直接赋值会增加计数</span><br><br>SharedPointer.IsValid();<span class="hljs-comment">//判断是否为空</span><br>SharedPointer.Reset();<span class="hljs-comment">//重置</span><br>SharedPointer = <span class="hljs-literal">nullptr</span>;<span class="hljs-comment">//重置,共享指针可以直接置空</span><br><span class="hljs-comment">// 拥有权转移</span><br>TSharedPtr&lt;FMyObjectType&gt; PointerTwo = MoveTemp(PointerOne);<span class="hljs-comment">// 转移后PointerOne直接为空</span><br><br><span class="hljs-comment">//解引用</span><br>SharedPointer-&gt;Function();<br>(*SharedPointer).Function();<br>SharedPointer.Get()-&gt;Function();<br><br></code></pre></td></tr></table></figure>
+
+<h3 id="2-5-TSharedFromThis"><a href="#2-5-TSharedFromThis" class="headerlink" title="2.5 TSharedFromThis"></a>2.5 TSharedFromThis</h3><p>使用this指针构造返回一个共享指针,与STL中的enable_shared_from_this非常相似,这里对其就不做过多的赘述了.</p>
+<h2 id="3-结语"><a href="#3-结语" class="headerlink" title="3. 结语"></a>3. 结语</h2><p>STL的智能指针为C++的内存泄漏问题引入了一个初步的解决方案,而UE中针对游戏开发下的不同使用场景以及能否兼容UObject的GC机制重新增加了不少功能.如果单纯知道这些指针的功能还是远远不够的,还是希望以后能有机会解析一下UE智能指针的源码吧.</p>
+</div><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"><a href="mailto:undefined">lenmain</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a href="https://vercel-hexo-ten.vercel.app/2023/08/18/UE%E4%B8%8ESTL%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/">https://vercel-hexo-ten.vercel.app/2023/08/18/UE%E4%B8%8ESTL%E6%99%BA%E8%83%BD%E6%8C%87%E9%92%88/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><div class="tag_share"><div class="post-meta__tag-list"></div><div class="post_share"><div class="social-share" data-image="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="next-post pull-full"><a href="/2023/08/18/hello-world/"><img class="next-cover" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc@1/img/default.jpg" onerror="onerror=null;src='/img/404.jpg'"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Hello World</div></div></a></div></nav></article></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2023 By lenmain</div><div class="framework-info"><span>Framework </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>Theme </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><section id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="fas fa-adjust"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="fas fa-cog"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="Back To Top"><i class="fas fa-arrow-up"></i></button></div></section><div><script src="https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js"></script><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js"></script><div class="js-pjax"><script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></div></body></html>
